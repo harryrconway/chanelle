@@ -1,0 +1,221 @@
+/* ---------- hero override ---------- */
+
+.ss-hero {
+  min-height: auto;
+  padding: 6vh 4vw 4vh;
+}
+
+.ss-hero-name {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* ---------- intro ---------- */
+
+.ss-intro {
+  padding: 4vh 5vw 6vh;
+}
+
+.ss-intro-header {
+  max-width: 720px;
+}
+
+.ss-intro-header h1 {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 7vw, 5.2rem);
+  line-height: 1.05;
+  color: var(--bg);
+  margin-bottom: 20px;
+}
+
+.ss-intro-header p {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+/* ---------- events ---------- */
+
+.events {
+  position: relative;
+  margin: 4vh 4vw 8vh;
+  padding: 8vh 5vw;
+  border-radius: 40px;
+  background: var(--band-pink);
+  overflow: hidden;
+  text-align: center;
+}
+
+.events-hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.events-hearts .heart {
+  width: 26px;
+}
+
+.events-heart-1 { top: 8%; left: 8%; --heart-rot: -14deg; }
+.events-heart-2 { top: 10%; right: 8%; left: auto; width: 20px; --heart-rot: 12deg; }
+.events-heart-3 { bottom: 6%; left: 50%; width: 22px; --heart-rot: -8deg; }
+
+.events.is-visible .heart {
+  animation: heartPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.events.is-visible .events-heart-2 {
+  animation-delay: 0.15s;
+}
+
+.events.is-visible .events-heart-3 {
+  animation-delay: 0.3s;
+}
+
+.events-eyebrow {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bg);
+  margin-bottom: 12px;
+}
+
+.events-heading {
+  position: relative;
+  z-index: 1;
+  font-family: 'Fredoka', var(--font-body);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  color: var(--bg);
+  margin-bottom: 16px;
+}
+
+.events-subtext {
+  position: relative;
+  z-index: 1;
+  max-width: 60ch;
+  margin: 0 auto 6vh;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+.event-cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+.event-card {
+  width: min(320px, 100%);
+  background: #fff;
+  border-radius: 28px;
+  padding: 32px 28px;
+  text-align: left;
+  box-shadow: 0 14px 34px rgba(196, 54, 112, 0.18);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.25s ease, translate 0.25s ease;
+}
+
+.events.is-visible .event-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.events.is-visible .event-card:nth-child(1) { transition-delay: 0.05s; }
+.events.is-visible .event-card:nth-child(2) { transition-delay: 0.2s; }
+.events.is-visible .event-card:nth-child(3) { transition-delay: 0.35s; }
+.events.is-visible .event-card:nth-child(4) { transition-delay: 0.5s; }
+
+.event-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 0 20px 40px rgba(196, 54, 112, 0.28);
+}
+
+.event-card-badge {
+  display: inline-block;
+  background: var(--card-pink);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.event-card h3 {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.event-card p {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* ---------- values grid (3 cards) ---------- */
+
+.ss-values {
+  padding: 4vh 5vw 8vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ss-value-card {
+  border-radius: 28px;
+  padding: 36px;
+  color: var(--ink);
+}
+
+.ss-value-card h3 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+/* ---------- cta ---------- */
+
+.ss-cta {
+  display: flex;
+  justify-content: center;
+  padding: 0 5vw 10vh;
+}
+
+.ss-cta a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .ss-values {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .events {
+    padding: 6vh 6vw;
+    border-radius: 28px;
+  }
+
+  .event-card {
+    width: 100%;
+  }
+}

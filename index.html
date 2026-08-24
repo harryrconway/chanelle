@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Clone — Animation Techniques</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="is-loading">
+
+  <div id="loading-screen" aria-hidden="true">
+    <h1 id="loading-title">Chanelle</h1>
+  </div>
+
+  <main class="page-content">
+    <section class="hero">
+      <h1 class="hero-name">
+        <span class="line">Chanelle</span>
+      </h1>
+
+      <div class="hero-center">
+        <div class="hero-taglines">
+          <p class="tagline tagline-left">Content Creation</p>
+          <span class="hero-star" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.2 7.2L21 12l-6.8 2.8L12 22l-2.2-7.2L3 12l6.8-2.8L12 2z" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <div class="marquee-wrap">
+          <div class="marquee-track" id="marquee-track">
+            <div class="marquee-card"><div class="placeholder-photo"></div></div>
+            <div class="marquee-card"><div class="placeholder-photo"></div></div>
+            <div class="marquee-card"><div class="placeholder-photo"></div></div>
+            <div class="marquee-card"><div class="placeholder-photo"></div></div>
+            <div class="marquee-card"><div class="placeholder-photo"></div></div>
+            <div class="marquee-card"><div class="placeholder-photo"></div></div>
+            <div class="marquee-card"><div class="placeholder-photo"></div></div>
+            <div class="marquee-card"><div class="placeholder-photo"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="shes-social-banner reveal-section">
+        <div class="shes-social-hearts" aria-hidden="true">
+          <svg class="heart ss-heart-1" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+          <svg class="heart ss-heart-2" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+          <svg class="heart ss-heart-3" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        </div>
+        <a href="shes-social.html" class="shes-social-link">She's Social</a>
+        <a href="shes-social.html" class="shes-social-cta">
+          <svg class="ss-cta-arrow" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 8 C48 30 30 45 10 48" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M45 15 L50 8 L54 16" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Click me</span>
+        </a>
+      </div>
+
+      <div class="work-header">
+        <h2>Featured Work</h2>
+        <p class="work-hint">(Click to view)</p>
+      </div>
+
+      <div class="work-stage">
+        <div class="work-images">
+          <div class="placeholder-photo work-image is-active" data-project="0"></div>
+          <div class="placeholder-photo work-image" data-project="1"></div>
+          <div class="placeholder-photo work-image" data-project="2"></div>
+          <div class="placeholder-photo work-image" data-project="3"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-note">
+      <svg class="intro-heart" id="intro-heart" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M100 178S6 116 6 56C6 25 30 4 60 4c19 0 35 10 40 26 5-16 21-26 40-26 30 0 54 21 54 52 0 60-94 122-94 122Z" fill="#fff"/>
+      </svg>
+      <p class="intro-label scroll-highlight">(About Chanelle)</p>
+      <p class="intro-text scroll-highlight">I'm just starting out in my career, driven by genuine curiosity for how brands tell their stories. I don't have decades of experience behind me. What I bring instead is fresh eyes, a fast learning curve, and real enthusiasm for finding the angle that makes a project click.</p>
+    </section>
+
+    <section class="about reveal-section">
+      <div class="placeholder-photo about-photo"></div>
+      <div class="about-stat">
+        <span class="stat-number">10</span>
+        <span class="stat-label">years creating content that connects</span>
+      </div>
+    </section>
+
+    <section class="services-scroll">
+      <div class="services-pin">
+        <div class="service-band bg-pink">
+          <div class="service-heading">
+            <h3>Motivational Speaking</h3>
+            <span class="service-number">(01)</span>
+          </div>
+          <div class="placeholder-photo service-photo"></div>
+          <div class="service-text">
+            <p>Inspiring, relatable talks that leave audiences ready to take action and challenge what they thought was possible.</p>
+            <div class="tag-row">
+              <span class="tag">Keynote Talks</span>
+              <span class="tag">Storytelling</span>
+              <span class="tag">Resilience</span>
+              <span class="tag">Audience Connection</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-band bg-teal">
+          <div class="service-heading">
+            <h3>Event Hosting / MC</h3>
+            <span class="service-number">(02)</span>
+          </div>
+          <div class="placeholder-photo service-photo"></div>
+          <div class="service-text">
+            <p>From weddings to corporate events, I bring energy, warmth, and professionalism to every stage.</p>
+            <div class="tag-row">
+              <span class="tag">Weddings</span>
+              <span class="tag">Corporate Events</span>
+              <span class="tag">Live Hosting</span>
+              <span class="tag">Crowd Energy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-band bg-green">
+          <div class="service-heading">
+            <h3>She's Social Community</h3>
+            <span class="service-number">(03)</span>
+          </div>
+          <div class="placeholder-photo service-photo"></div>
+          <div class="service-text">
+            <p>A women's social group on the Gold Coast where connection, fun, and empowerment meet.</p>
+            <div class="tag-row">
+              <span class="tag">Women's Community</span>
+              <span class="tag">Gold Coast Meetups</span>
+              <span class="tag">Connection</span>
+              <span class="tag">Empowerment</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-band bg-yellow">
+          <div class="service-heading">
+            <h3>Content Creation</h3>
+            <span class="service-number">(04)</span>
+          </div>
+          <div class="placeholder-photo service-photo"></div>
+          <div class="service-text">
+            <p>Authentic, engaging content that tells stories, sparks conversations, and creates meaningful connections with your audience.</p>
+            <div class="tag-row">
+              <span class="tag">Authentic Storytelling</span>
+              <span class="tag">Social Content</span>
+              <span class="tag">Engagement</span>
+              <span class="tag">Brand Voice</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-banner reveal-section">
+      <p>&ldquo;It was never my disability that held me back, it was my mindset about my disability that did&rdquo;</p>
+    </section>
+
+    <footer class="site-footer reveal-section">
+      <div class="footer-top">
+        <span id="footer-location">Gold Coast, Australia</span>
+        <span id="footer-clock">--:--</span>
+      </div>
+
+      <div class="footer-middle">
+        <h2>Let's work <em>together!</em></h2>
+        <button type="button" class="btn-contact" id="open-contact"><span class="contact-btn-text">Contact</span></button>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">©2026</span>
+
+        <nav class="social-links">
+          <a href="#" class="social-pill pill-1">Instagram</a>
+          <a href="#" class="social-pill pill-2">YouTube</a>
+          <a href="#" class="social-pill pill-4">TikTok</a>
+        </nav>
+      </div>
+
+      <div class="footer-hearts" aria-hidden="true">
+        <svg class="heart heart-1" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-2" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-3" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-4" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-5" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-6" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-7" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-8" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-9" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-10" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-11" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-12" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-13" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+        <svg class="heart heart-14" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z"/></svg>
+      </div>
+    </footer>
+
+    <button type="button" class="fixed-contact-btn" id="open-contact-fixed"><span class="contact-btn-text">Contact</span></button>
+  </main>
+
+  <div class="contact-modal" id="contact-modal">
+    <div class="contact-panel">
+      <button type="button" class="contact-close" id="close-contact" aria-label="Close">×</button>
+      <h2>Get in <em>touch</em></h2>
+
+      <form class="contact-form">
+        <div class="field-grid">
+          <label class="field">
+            <span>Full name</span>
+            <input type="text" name="name" placeholder="Jane Doe">
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" placeholder="jane@email.com">
+          </label>
+          <label class="field">
+            <span>Company</span>
+            <input type="text" name="company" placeholder="Acme Co.">
+          </label>
+        </div>
+
+        <label class="field field-wide">
+          <span>Project details</span>
+          <textarea name="details" placeholder="Tell me your goals"></textarea>
+        </label>
+
+        <div class="field field-wide">
+          <span>What can I help with?</span>
+          <div class="tag-row tag-row-select">
+            <button type="button" class="tag tag-option">UGC</button>
+            <button type="button" class="tag tag-option">Brand Photography</button>
+            <button type="button" class="tag tag-option">Short-Form Video</button>
+            <button type="button" class="tag tag-option">Content Strategy</button>
+            <button type="button" class="tag tag-option">Account Management</button>
+            <button type="button" class="tag tag-option">Other</button>
+          </div>
+        </div>
+
+        <div class="field field-wide">
+          <span>Budget range</span>
+          <div class="tag-row tag-row-select" data-single="true">
+            <button type="button" class="tag tag-option">Under $500</button>
+            <button type="button" class="tag tag-option">$500–$1k</button>
+            <button type="button" class="tag tag-option">$1k–$2.5k</button>
+            <button type="button" class="tag tag-option">$2.5k–$5k</button>
+            <button type="button" class="tag tag-option">$5k+</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Send it over</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="index.js" defer></script>
+</body>
+</html>
