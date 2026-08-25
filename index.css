@@ -246,6 +246,20 @@ body.content-visible .page-content {
   cursor: pointer;
 }
 
+.shes-social-link::after {
+  content: '';
+  position: absolute;
+  left: -1%;
+  right: -1%;
+  bottom: 0.08em;
+  height: 0.14em;
+  background: var(--card-pink);
+  opacity: 0.6;
+  border-radius: 999px;
+  transform: rotate(-1deg);
+  z-index: -1;
+}
+
 .ss-spam-heart {
   position: absolute;
   width: 32px;
