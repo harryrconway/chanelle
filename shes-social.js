@@ -71,6 +71,7 @@
 
     const daysWrap = document.createElement('div');
     daysWrap.className = 'month-days';
+    const monthEvents = [];
 
     const firstWeekday = new Date(year, monthIndex, 1).getDay();
     const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
@@ -87,21 +88,17 @@
       const eventText = PLACEHOLDER_EVENTS[mmdd];
       const isToday = isCurrentMonth && day === TODAY.getDate();
 
-      let cell;
+      const cell = document.createElement('span');
+      cell.className = 'cal-day';
+
       if (eventText) {
-        cell = document.createElement('button');
-        cell.type = 'button';
-        cell.className = 'cal-day has-event';
-        cell.dataset.mmdd = mmdd;
-        cell.dataset.label = `${MONTH_NAMES[monthIndex]} ${day}`;
-        cell.setAttribute('aria-label', `${MONTH_NAMES[monthIndex]} ${day}: ${eventText}`);
+        cell.classList.add('has-event');
         const dot = document.createElement('span');
         dot.className = 'cal-day-dot';
         dot.setAttribute('aria-hidden', 'true');
         cell.append(String(day), dot);
+        monthEvents.push({ day, label: `${MONTH_NAMES[monthIndex]} ${day}`, text: eventText });
       } else {
-        cell = document.createElement('span');
-        cell.className = 'cal-day';
         cell.textContent = String(day);
       }
 
@@ -110,7 +107,49 @@
     }
 
     card.appendChild(daysWrap);
+    card.appendChild(buildMonthAgenda(monthEvents));
     return card;
+  }
+
+  function buildMonthAgenda(monthEvents) {
+    const wrap = document.createElement('div');
+    wrap.className = 'month-agenda';
+
+    const eyebrow = document.createElement('p');
+    eyebrow.className = 'month-agenda-eyebrow';
+    eyebrow.textContent = "What's on";
+    wrap.appendChild(eyebrow);
+
+    if (monthEvents.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'month-agenda-empty-text';
+      empty.textContent = 'Nothing on the calendar yet';
+      wrap.appendChild(empty);
+      return wrap;
+    }
+
+    const list = document.createElement('ul');
+    list.className = 'month-agenda-list';
+    monthEvents.forEach(({ day, label, text }) => {
+      const item = document.createElement('li');
+      item.className = 'month-agenda-item';
+      item.setAttribute('aria-label', `${label}: ${text}`);
+
+      const dayEl = document.createElement('span');
+      dayEl.className = 'month-agenda-day';
+      dayEl.setAttribute('aria-hidden', 'true');
+      dayEl.textContent = String(day);
+
+      const textEl = document.createElement('span');
+      textEl.className = 'month-agenda-text';
+      textEl.setAttribute('aria-hidden', 'true');
+      textEl.textContent = text;
+
+      item.append(dayEl, textEl);
+      list.appendChild(item);
+    });
+    wrap.appendChild(list);
+    return wrap;
   }
 
   function renderCalendar() {
@@ -127,33 +166,7 @@
     grid.appendChild(fragment);
   }
 
-  function setupDetailPanel() {
-    const grid = document.getElementById('cal-grid');
-    const panel = document.getElementById('cal-detail');
-    const panelBody = document.getElementById('cal-detail-body');
-    if (!grid || !panel || !panelBody) return;
-
-    let activeDay = null;
-
-    grid.addEventListener('click', (event) => {
-      const dayButton = event.target.closest('.cal-day.has-event');
-      if (!dayButton) return;
-
-      if (activeDay) activeDay.classList.remove('is-active');
-      dayButton.classList.add('is-active');
-      activeDay = dayButton;
-
-      const eventText = PLACEHOLDER_EVENTS[dayButton.dataset.mmdd];
-      panelBody.textContent = `${dayButton.dataset.label} — ${eventText}`;
-
-      panel.classList.remove('pulse');
-      void panel.offsetWidth;
-      panel.classList.add('pulse');
-    });
-  }
-
   renderCalendar();
-  setupDetailPanel();
 })();
 
 // --- scroll-triggered reveal for sections on this page (same pattern as index.js) ---
