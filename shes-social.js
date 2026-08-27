@@ -6,18 +6,18 @@
   // provides it. One per month keeps the numbered pairing between the
   // description column and the month card simple (badge N === month N).
   const YEAR_EVENTS = [
-    { month: 'January',   title: 'Coffee & Connection meetup', blurb: 'A relaxed coffee morning to kick off the year and catch up with the group.' },
-    { month: 'February',  title: "Galentine's catch-up",        blurb: 'A celebration of friendship and self-love, with treats and good company all round.' },
-    { month: 'March',     title: 'Monthly mixer',                blurb: 'Our regular evening mixer, the easiest way to meet new faces in the group.' },
-    { month: 'April',     title: 'Wellness walk',                blurb: 'A gentle group walk and chat, because moving together beats moving alone.' },
-    { month: 'May',       title: 'Coffee & Connection meetup',   blurb: 'Another cosy coffee catch-up to check in before the weather turns.' },
-    { month: 'June',      title: 'Winter warmer social',         blurb: 'A cosy indoor get-together with warm drinks and even warmer conversation.' },
-    { month: 'July',      title: 'Book club brunch',             blurb: "A laid-back brunch to swap recommendations and talk about what we've been reading." },
-    { month: 'August',    title: 'Monthly mixer',                blurb: 'Our midwinter mixer, a chance to unwind and welcome new members.' },
-    { month: 'September', title: 'Sunset walk & chat',           blurb: 'An easy evening walk to welcome the warmer evenings, finished off with a chat.' },
-    { month: 'October',   title: 'Spring social mixer',          blurb: "A seasonal mixer to celebrate the warmer weather and the group's newest members." },
-    { month: 'November',  title: 'Paint & sip evening',          blurb: 'A relaxed creative night with paints, prosecco, and plenty of laughs.' },
-    { month: 'December',  title: 'End of year celebration',      blurb: 'A festive get-together to toast the year and everyone who made it special.' },
+    { month: 'January',   title: 'Coffee & Connection meetup', blurb: 'A relaxed coffee morning to kick off the year.' },
+    { month: 'February',  title: "Galentine's catch-up",        blurb: 'Celebrating friendship and self-love with treats and good company.' },
+    { month: 'March',     title: 'Monthly mixer',                blurb: 'An easy evening mixer to meet new faces.' },
+    { month: 'April',     title: 'Wellness walk',                blurb: 'A gentle group walk, because moving together beats moving alone.' },
+    { month: 'May',       title: 'Coffee & Connection meetup',   blurb: 'A cosy coffee catch-up before the weather turns.' },
+    { month: 'June',      title: 'Winter warmer social',         blurb: 'Warm drinks and even warmer conversation, indoors.' },
+    { month: 'July',      title: 'Book club brunch',             blurb: 'A laid-back brunch to swap book recommendations.' },
+    { month: 'August',    title: 'Monthly mixer',                blurb: 'A midwinter mixer to unwind and meet new members.' },
+    { month: 'September', title: 'Sunset walk & chat',           blurb: 'An easy evening walk to welcome the warmer nights.' },
+    { month: 'October',   title: 'Spring social mixer',          blurb: 'Celebrating warmer weather and our newest members.' },
+    { month: 'November',  title: 'Paint & sip evening',          blurb: 'A relaxed creative night with paints, prosecco, and laughs.' },
+    { month: 'December',  title: 'End of year celebration',      blurb: 'A festive toast to the year and everyone in it.' },
   ];
 
   function buildCardRow(item, index) {
