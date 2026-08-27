@@ -74,6 +74,168 @@
   z-index: -1;
 }
 
+/* ---------- hand-drawn scribble heading accent ---------- */
+
+.ss-scribble-heading {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.ss-scribble-wrap {
+  position: relative;
+  display: inline-block;
+  padding: 0.35em 0.7em;
+}
+
+.ss-scribble {
+  position: absolute;
+  top: -6%;
+  left: -20%;
+  width: 140%;
+  height: 112%;
+  z-index: -1;
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+
+.ss-scribble-small {
+  top: -8%;
+  left: -24%;
+  width: 148%;
+  height: 116%;
+  transform: rotate(2deg);
+}
+
+.ss-scribble-text {
+  position: relative;
+  z-index: 1;
+  font-family: 'Fredoka', var(--font-body);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--bg);
+}
+
+/* ---------- intro ---------- */
+
+.ss-intro {
+  padding: 6vh 5vw 4vh;
+  text-align: center;
+}
+
+.ss-intro-text {
+  max-width: 65ch;
+  margin: 0 auto;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ---------- our journey ---------- */
+
+.ss-journey {
+  padding: 6vh 5vw;
+}
+
+.ss-journey-text {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.ss-journey-text p {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--ink);
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.ss-journey-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- social calendar / event registration pills ---------- */
+
+.ss-cal-pills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 0 5vw 4vh;
+}
+
+/* ---------- mission quote ---------- */
+
+.ss-mission p {
+  font-style: italic;
+}
+
+/* ---------- contact us ---------- */
+
+.ss-contact {
+  padding: 6vh 5vw 12vh;
+  text-align: center;
+}
+
+.ss-contact-intro {
+  max-width: 55ch;
+  margin: 0 auto 32px;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+.ss-contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+.ss-contact-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+}
+
+.ss-contact-label {
+  font-family: 'Fredoka', var(--font-body);
+  font-weight: 700;
+  color: var(--bg);
+}
+
+.ss-contact-list a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--card-pink);
+  text-underline-offset: 3px;
+}
+
+.ss-contact-signoff {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.ss-contact-name {
+  font-family: 'Fredoka', var(--font-body);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--bg);
+}
+
+.ss-contact-signoff .btn-contact {
+  text-decoration: none;
+  display: inline-block;
+}
+
 /* ---------- calendar section ---------- */
 
 .ss-calendar {
@@ -249,5 +411,12 @@
 
   .ss-cal-card-text {
     font-size: 0.8rem;
+  }
+
+  .ss-contact-list li {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-align: center;
   }
 }
