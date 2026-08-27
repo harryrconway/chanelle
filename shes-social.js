@@ -26,6 +26,9 @@
     const isCurrent = index === CURRENT_MONTH_INDEX;
     if (isCurrent) li.classList.add('is-current-month');
 
+    const head = document.createElement('span');
+    head.className = 'ss-cal-card-head';
+
     const badge = document.createElement('span');
     badge.className = 'ss-cal-badge';
     if (isCurrent) badge.classList.add('is-current-month');
@@ -36,11 +39,13 @@
     month.className = 'ss-cal-card-month';
     month.textContent = item.month.slice(0, 3);
 
+    head.append(badge, month);
+
     const text = document.createElement('span');
     text.className = 'ss-cal-card-text';
     text.textContent = item.title;
 
-    li.append(badge, month, text);
+    li.append(head, text);
     return li;
   }
 
