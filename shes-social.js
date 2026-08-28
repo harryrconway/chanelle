@@ -28,7 +28,7 @@
   // just need to not collide with each other, not leave room for an exit.
   const P = {
     circleGrow: [0, 0.06],
-    headingDock: [0.05, 0.13],
+    headingDock: [0, 0.1],
     introIn: [0.12, 0.2],
     leftIn: [0.24, 0.32],
     rightIn: [0.32, 0.4],
