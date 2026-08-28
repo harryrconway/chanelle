@@ -1,53 +1,8 @@
 // --- prevent the browser from restoring a mid-page scroll position on reload ---
-// Without this, refreshing while scrolled down measures the hero's dock target
-// while it's off-screen above the viewport, sending the loading animation flying
-// to a wildly wrong position instead of docking neatly into the header.
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
-
-// --- loading screen: grow "Chanelle" from centered-tiny to its real docked position ---
-const loadingTitle = document.getElementById('loading-title');
-const heroName = document.querySelector('.hero-name');
-
-// must match #loading-title's animation-duration and the % where the "rise to dock" keyframe starts
-const LOADING_DURATION_MS = 3000;
-const RISE_START_PERCENT = 0.65;
-const RISE_START_MS = LOADING_DURATION_MS * RISE_START_PERCENT;
-
-function startPageReveal() {
-  document.body.classList.remove('is-loading');
-  document.body.classList.add('content-visible');
-}
-
-if (loadingTitle && heroName) {
-  document.fonts.ready.then(() => {
-    const heroRect = heroName.getBoundingClientRect();
-    const dockX = heroRect.left + heroRect.width / 2 - window.innerWidth / 2;
-    const dockY = heroRect.top + heroRect.height / 2 - window.innerHeight / 2;
-    document.documentElement.style.setProperty('--dock-x', `${dockX}px`);
-    document.documentElement.style.setProperty('--dock-y', `${dockY}px`);
-    document.body.classList.add('fonts-ready');
-
-    // rest of the page fades in *while* the title is still rising to its dock —
-    // it's hidden behind the loading screen's opaque background either way, so by
-    // the time the overlay is removed the real page has already faded in to match it
-    setTimeout(() => {
-      document.body.classList.add('content-visible');
-    }, RISE_START_MS);
-  });
-
-  loadingTitle.addEventListener('animationend', (event) => {
-    if (event.animationName === 'loadingReveal') {
-      startPageReveal();
-      const loadingScreen = document.getElementById('loading-screen');
-      if (loadingScreen) loadingScreen.remove();
-    }
-  });
-} else {
-  startPageReveal();
-}
 
 // --- site-wide smooth scrolling ---
 // Intercepts wheel input and animates the *real* window scroll position toward it
@@ -61,7 +16,7 @@ let smoothRunning = false;
 
 function isScrollLocked() {
   const modal = document.getElementById('contact-modal');
-  return document.body.classList.contains('is-loading') || (modal && modal.classList.contains('is-open'));
+  return modal && modal.classList.contains('is-open');
 }
 
 function smoothScrollTick() {
@@ -116,9 +71,6 @@ const highlightGroups = Array.from(highlightContainers).map((el) => ({
   words: Array.from(el.querySelectorAll('.word')),
 }));
 
-const introHeart = document.getElementById('intro-heart');
-const introTextEl = document.querySelector('.intro-text');
-
 function updateHighlight() {
   const start = window.innerHeight * 0.9;
   const end = window.innerHeight * 0.1;
@@ -127,11 +79,6 @@ function updateHighlight() {
     const rect = el.getBoundingClientRect();
     let progress = (start - rect.top) / (start - end);
     progress = Math.min(1, Math.max(0, progress));
-
-    if (introHeart && el === introTextEl) {
-      // heart glows in step with the text, but stays subtle so the words stay in focus
-      introHeart.style.opacity = String(0.03 + progress * 0.14);
-    }
 
     const n = words.length;
     words.forEach((word, i) => {
@@ -149,6 +96,19 @@ function updateHighlight() {
     });
   });
 }
+
+let scrollTicking = false;
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(() => {
+      updateHighlight();
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+});
+
+updateHighlight();
 
 // --- services: pinned viewport, cards step in one at a time as you scroll ---
 // Driven by a continuous rAF loop that lerps toward the scroll-derived target every
@@ -225,25 +185,6 @@ if (servicesScroll && servicesBands.length) {
   requestAnimationFrame(servicesLoop);
 }
 
-let scrollTicking = false;
-window.addEventListener('scroll', () => {
-  if (!scrollTicking) {
-    window.requestAnimationFrame(() => {
-      updateHighlight();
-      scrollTicking = false;
-    });
-    scrollTicking = true;
-  }
-});
-
-updateHighlight();
-
-// --- seamless marquee: duplicate the track content once ---
-const marqueeTrack = document.getElementById('marquee-track');
-if (marqueeTrack) {
-  marqueeTrack.innerHTML += marqueeTrack.innerHTML;
-}
-
 // --- scroll-triggered reveal for sections below the fold ---
 const sectionObserver = new IntersectionObserver(
   (entries) => {
@@ -258,41 +199,6 @@ const sectionObserver = new IntersectionObserver(
 );
 
 document.querySelectorAll('.reveal-section').forEach((el) => sectionObserver.observe(el));
-
-// --- "She's Social" hover: tiny hearts spam from the cursor ---
-(function setupShesSocialHeartSpam() {
-  const link = document.querySelector('.shes-social-link');
-  const banner = document.querySelector('.shes-social-banner');
-  if (!link || !banner) return;
-
-  const HEART_PATH = 'M16 29S1 19.5 1 9.7C1 4.3 5 1 9.4 1c3 0 5.4 1.6 6.6 4 1.2-2.4 3.6-4 6.6-4C27 1 31 4.3 31 9.7 31 19.5 16 29 16 29Z';
-  const SPAWN_INTERVAL_MS = 220;
-  let lastSpawn = 0;
-
-  link.addEventListener('mousemove', (event) => {
-    const now = performance.now();
-    if (now - lastSpawn < SPAWN_INTERVAL_MS) return;
-    lastSpawn = now;
-
-    const bannerRect = banner.getBoundingClientRect();
-    const x = event.clientX - bannerRect.left;
-    const y = event.clientY - bannerRect.top;
-
-    const heart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    heart.setAttribute('viewBox', '0 0 32 29');
-    heart.classList.add('ss-spam-heart');
-    heart.style.left = `${x}px`;
-    heart.style.top = `${y}px`;
-    heart.style.setProperty('--spam-rot', `${(Math.random() * 60 - 30).toFixed(1)}deg`);
-
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', HEART_PATH);
-    heart.appendChild(path);
-
-    banner.appendChild(heart);
-    heart.addEventListener('animationend', () => heart.remove());
-  });
-})();
 
 // --- footer pills: real gravity + collision physics, not a fixed CSS curve ---
 // Each one drops from its own column, hits the floor, and can bump into its
@@ -527,8 +433,7 @@ setInterval(updateClock, 15000);
 
 // --- contact modal ---
 const contactModal = document.getElementById('contact-modal');
-const openContactBtn = document.getElementById('open-contact');
-const openContactFixedBtn = document.getElementById('open-contact-fixed');
+const openContactBtns = document.querySelectorAll('.js-open-contact');
 const closeContactBtn = document.getElementById('close-contact');
 
 function openModal() {
@@ -541,8 +446,7 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-if (openContactBtn) openContactBtn.addEventListener('click', openModal);
-if (openContactFixedBtn) openContactFixedBtn.addEventListener('click', openModal);
+openContactBtns.forEach((btn) => btn.addEventListener('click', openModal));
 if (closeContactBtn) closeContactBtn.addEventListener('click', closeModal);
 if (contactModal) {
   contactModal.addEventListener('click', (event) => {
@@ -550,54 +454,12 @@ if (contactModal) {
   });
 }
 
-// --- keep the fixed contact button pinned to the viewport, but park it right at the
-// footer's bottom edge instead of letting it overlap past the footer while scrolling ---
-const siteFooter = document.querySelector('.site-footer');
-if (openContactFixedBtn && siteFooter) {
-  const BTN_GAP = 28;
-
-  function updateFixedBtnPosition() {
-    const footerRect = siteFooter.getBoundingClientRect();
-    const btnHeight = openContactFixedBtn.offsetHeight;
-    const fixedBtnTop = window.innerHeight - BTN_GAP - btnHeight;
-
-    if (footerRect.bottom < fixedBtnTop + btnHeight) {
-      const parkedTop = footerRect.bottom + window.scrollY - btnHeight - BTN_GAP;
-      openContactFixedBtn.style.position = 'absolute';
-      openContactFixedBtn.style.top = `${parkedTop}px`;
-      openContactFixedBtn.style.bottom = 'auto';
-    } else {
-      openContactFixedBtn.style.position = 'fixed';
-      openContactFixedBtn.style.top = 'auto';
-      openContactFixedBtn.style.bottom = `${BTN_GAP}px`;
-    }
-  }
-
-  window.addEventListener('scroll', updateFixedBtnPosition, { passive: true });
-  window.addEventListener('resize', updateFixedBtnPosition);
-  updateFixedBtnPosition();
-}
-
-// --- tag-pill selectors inside the contact form ---
-document.querySelectorAll('.tag-row-select').forEach((row) => {
-  const singleSelect = row.dataset.single === 'true';
-  row.querySelectorAll('.tag-option').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      if (singleSelect) {
-        row.querySelectorAll('.tag-option').forEach((b) => b.classList.remove('is-selected'));
-      }
-      btn.classList.toggle('is-selected');
-    });
-  });
-});
-
 // --- form submit placeholder ---
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
     contactForm.reset();
-    document.querySelectorAll('.tag-option.is-selected').forEach((b) => b.classList.remove('is-selected'));
     alert('Practice form only — no backend connected.');
     closeModal();
   });
