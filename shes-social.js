@@ -1,39 +1,30 @@
 (function setupStoryScroll() {
   const scrollSection = document.querySelector('.ss-story-scroll');
   const pin = document.querySelector('.ss-story-pin');
-  const circlePink = document.querySelector('.ss-hero-circle');
-  const circleBlue = document.querySelector('.ss-circle-blue');
   const heading = document.querySelector('.ss-hero-text');
-  const intro = document.querySelector('.ss-hero-intro');
-  const introHearts = document.querySelectorAll('.ss-hero-intro-hearts .heart');
-  const briefLeft = document.querySelector('.ss-brief-left');
-  const briefLeftHearts = document.querySelectorAll('.ss-brief-left .heart');
-  const briefRight = document.querySelector('.ss-brief-right');
-  const briefRightHearts = document.querySelectorAll('.ss-brief-right .heart');
-  const calendar = document.querySelector('.ss-cal-chapter');
+  const countNums = document.querySelectorAll('.ss-count-num');
+  const finaleWrap = document.querySelector('.ss-finale-wrap');
+  const finaleShimmer = document.querySelector('.ss-finale-shimmer');
 
-  if (!scrollSection || !pin || !circlePink || !circleBlue || !heading || !intro || !briefLeft || !briefRight || !calendar) return;
+  if (!scrollSection || !pin || !heading || !countNums.length || !finaleWrap || !finaleShimmer) return;
 
-  const BASE_SIZE = 140; // must match both circles' width/height in shes-social.css
-  const FADE_STOP = 0.7; // must match both circles' radial-gradient transparent stop
+  const BASE_SIZE = 140; // must match .ss-finale-wrap's width/height in shes-social.css
+  const FADE_STOP = 0.7; // must match .ss-finale-base's radial-gradient transparent stop
   const HEADING_MAX_SCALE = 1.45;
-  const SLIDE_DISTANCE = 40; // px, shared entrance/exit slide for briefs
-  const INTRO_HEART_ROTATIONS = [-12, 14, -8];
-  const LEFT_HEART_ROTATIONS = [-10, 12];
-  const RIGHT_HEART_ROTATIONS = [10, -14];
+  const NUMBER_SCALE_MIN = 0.75;
+  const BLUE_RGB = [158, 220, 245]; // must match --page-bg (#9edcf5) in index.css
+  const PINK_RGB = [253, 150, 205]; // must match --card-pink (#fd96cd) in index.css
 
-  // Phase windows as fractions of total scroll progress (0-1). Every
-  // content chapter now only ever fades IN and then stays on screen — the
-  // page builds up rather than swapping chapter for chapter — so windows
-  // just need to not collide with each other, not leave room for an exit.
+  // Phase windows as fractions of total scroll progress (0-1). Numerals use
+  // the full 4-argument fadeWindow (in, hold, out) so each one clears away
+  // before the next appears; the finale only ever grows/shifts forward.
   const P = {
-    circleGrow: [0, 0.06],
     headingDock: [0, 0.1],
-    introIn: [0.12, 0.2],
-    leftIn: [0.24, 0.32],
-    rightIn: [0.32, 0.4],
-    blueGrow: [0.42, 0.56],
-    calIn: [0.6, 0.7],
+    number1: [0.12, 0.18, 0.26, 0.32],
+    number2: [0.34, 0.4, 0.48, 0.54],
+    number3: [0.56, 0.62, 0.7, 0.76],
+    finaleGrow: [0.74, 0.88],
+    finaleShift: [0.84, 0.96],
   };
 
   let dockDistance = 0;
@@ -51,6 +42,10 @@
 
   function easeInCubic(t) {
     return Math.pow(t, 3);
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
   // Fade in (ease-out) -> hold at 1 -> fade out (ease-in) -> 0. Pass
@@ -83,54 +78,34 @@
   }
 
   function render(progress) {
-    // Circles: both share one viewport-covering target scale.
-    const targetDiameter = Math.hypot(window.innerWidth, window.innerHeight) * 1.15;
-    const maxScale = targetDiameter / (BASE_SIZE * FADE_STOP);
-
-    const pinkGrow = mapRange(progress, P.circleGrow[0], P.circleGrow[1]);
-    circlePink.style.setProperty('--circle-scale', (1 + (maxScale - 1) * pinkGrow).toFixed(3));
-
-    const blueGrow = mapRange(progress, P.blueGrow[0], P.blueGrow[1]);
-    circleBlue.style.setProperty('--circle-scale-blue', (1 + (maxScale - 1) * blueGrow).toFixed(3));
-
     // Heading: grows and docks to the top.
     const dock = mapRange(progress, P.headingDock[0], P.headingDock[1]);
     heading.style.transform = `translateY(${(dockDistance * dock).toFixed(1)}px) scale(${(1 + (HEADING_MAX_SCALE - 1) * dock).toFixed(3)})`;
 
-    // Intro: fades in, then stays on screen.
-    const introEased = fadeWindow(progress, P.introIn[0], P.introIn[1], 1, 1);
-    intro.style.opacity = introEased.toFixed(3);
-    intro.style.transform = `translateY(${(24 * (1 - introEased)).toFixed(1)}px)`;
-    introHearts.forEach((heart, i) => {
-      const t = mapRange(introEased, i * 0.1, 1);
-      heart.style.opacity = (t * 0.85).toFixed(3);
-      heart.style.transform = `scale(${(0.3 + 0.7 * t).toFixed(3)}) rotate(${INTRO_HEART_ROTATIONS[i] || 0}deg)`;
+    // 1, 2, 3: each fades in, holds, then fades away before the next arrives.
+    const numberWindows = [P.number1, P.number2, P.number3];
+    countNums.forEach((el, i) => {
+      const w = numberWindows[i];
+      const eased = fadeWindow(progress, w[0], w[1], w[2], w[3]);
+      el.style.opacity = eased.toFixed(3);
+      el.style.transform = `translate(-50%, -50%) scale(${(NUMBER_SCALE_MIN + (1 - NUMBER_SCALE_MIN) * eased).toFixed(3)})`;
     });
 
-    // Left brief: fades in from the left, then stays on screen.
-    const leftEased = fadeWindow(progress, P.leftIn[0], P.leftIn[1], 1, 1);
-    briefLeft.style.opacity = leftEased.toFixed(3);
-    briefLeft.style.transform = `translate(0, -50%) translateX(${(-SLIDE_DISTANCE * (1 - leftEased)).toFixed(1)}px)`;
-    briefLeftHearts.forEach((heart, i) => {
-      const t = mapRange(leftEased, i * 0.15, 1);
-      heart.style.opacity = (t * 0.85).toFixed(3);
-      heart.style.transform = `scale(${(0.3 + 0.7 * t).toFixed(3)}) rotate(${LEFT_HEART_ROTATIONS[i] || 0}deg)`;
-    });
+    // Finale: one disc grows to cover the screen while its own color lerps
+    // from blue to pink, plus a continuously (non-scroll-driven) rotating
+    // shimmer highlight layered on top so it keeps moving even at rest.
+    const targetDiameter = Math.hypot(window.innerWidth, window.innerHeight) * 1.15;
+    const maxScale = targetDiameter / (BASE_SIZE * FADE_STOP);
 
-    // Right brief: fades in from the right, then stays on screen.
-    const rightEased = fadeWindow(progress, P.rightIn[0], P.rightIn[1], 1, 1);
-    briefRight.style.opacity = rightEased.toFixed(3);
-    briefRight.style.transform = `translate(0, -50%) translateX(${(SLIDE_DISTANCE * (1 - rightEased)).toFixed(1)}px)`;
-    briefRightHearts.forEach((heart, i) => {
-      const t = mapRange(rightEased, i * 0.15, 1);
-      heart.style.opacity = (t * 0.85).toFixed(3);
-      heart.style.transform = `scale(${(0.3 + 0.7 * t).toFixed(3)}) rotate(${RIGHT_HEART_ROTATIONS[i] || 0}deg)`;
-    });
+    const grow = mapRange(progress, P.finaleGrow[0], P.finaleGrow[1]);
+    finaleWrap.style.setProperty('--finale-scale', (1 + (maxScale - 1) * grow).toFixed(3));
+    finaleShimmer.style.opacity = (grow * 0.9).toFixed(3);
 
-    // Calendar: fades in, then holds through the rest of the scroll.
-    const calEased = fadeWindow(progress, P.calIn[0], P.calIn[1], 1, 1);
-    calendar.style.opacity = calEased.toFixed(3);
-    calendar.style.transform = `translateY(calc(-50% + ${(24 * (1 - calEased)).toFixed(1)}px))`;
+    const shift = easeInOutCubic(mapRange(progress, P.finaleShift[0], P.finaleShift[1]));
+    const r = Math.round(BLUE_RGB[0] + (PINK_RGB[0] - BLUE_RGB[0]) * shift);
+    const g = Math.round(BLUE_RGB[1] + (PINK_RGB[1] - BLUE_RGB[1]) * shift);
+    const b = Math.round(BLUE_RGB[2] + (PINK_RGB[2] - BLUE_RGB[2]) * shift);
+    finaleWrap.style.setProperty('--finale-rgb', `${r}, ${g}, ${b}`);
   }
 
   function loop() {
