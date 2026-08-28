@@ -1,8 +1,8 @@
-/* ---------- story: docked heading, count-up, blue-to-pink shimmer finale ---------- */
+/* ---------- story: docked heading, blue-to-pink shimmer finale ---------- */
 
 .ss-story-scroll {
   position: relative;
-  height: 480vh;
+  height: 300vh;
 }
 
 .ss-story-pin {
@@ -27,31 +27,6 @@
   color: var(--bg);
   text-align: center;
   will-change: transform;
-}
-
-/* ---------- 1, 2, 3 count-up ---------- */
-
-.ss-count {
-  position: absolute;
-  top: 58%;
-  left: 50%;
-  z-index: 2;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.ss-count-num {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.75);
-  font-family: 'Fredoka', var(--font-body);
-  font-weight: 700;
-  font-size: clamp(5rem, 20vw, 14rem);
-  line-height: 1;
-  color: var(--bg);
-  opacity: 0;
-  will-change: opacity, transform;
 }
 
 /* ---------- blue-to-pink shimmer finale ---------- */
