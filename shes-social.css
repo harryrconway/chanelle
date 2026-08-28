@@ -2,7 +2,7 @@
 
 .ss-story-scroll {
   position: relative;
-  height: 750vh;
+  height: 700vh;
 }
 
 .ss-story-pin {
@@ -57,7 +57,7 @@
 
 .ss-hero-intro {
   position: absolute;
-  top: 58%;
+  top: 34%;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -85,7 +85,7 @@
 .ss-hero-intro-text {
   font-size: clamp(1.2rem, 2.2vw, 1.55rem);
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.45;
   color: var(--ink);
 }
 
@@ -93,9 +93,9 @@
 
 .ss-brief {
   position: absolute;
-  top: 58%;
+  top: 70%;
   z-index: 2;
-  max-width: 380px;
+  max-width: 440px;
   padding: 0 20px;
   opacity: 0;
   will-change: opacity, transform;
@@ -128,7 +128,7 @@
 .ss-brief-text {
   font-size: clamp(1.05rem, 1.9vw, 1.3rem);
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.45;
   color: var(--ink);
 }
 
@@ -136,22 +136,22 @@
 
 .ss-cal-chapter {
   position: absolute;
-  top: 58%;
+  top: 70%;
   left: 0;
   right: 0;
   margin: 0 auto;
   z-index: 2;
-  width: min(420px, 86vw);
+  width: min(340px, 78vw);
   text-align: center;
   opacity: 0;
   will-change: opacity, transform;
 }
 
 .ss-cal-chapter-eyebrow {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   font-family: var(--font-body);
   font-weight: 800;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ink);
@@ -159,15 +159,15 @@
 
 .ss-cal-chapter-card {
   background: var(--stone);
-  border-radius: 24px;
-  padding: 28px 24px;
+  border-radius: 20px;
+  padding: 18px 20px;
   box-shadow: 0 16px 30px rgba(196, 54, 112, 0.18);
 }
 
 .ss-cal-chapter-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   list-style: none;
   text-align: left;
 }
@@ -176,7 +176,7 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  font-size: 0.95rem;
+  font-size: 0.82rem;
 }
 
 .ss-cal-chapter-date {
@@ -193,8 +193,8 @@
 
 .ss-cal-chapter-note {
   display: block;
-  margin-top: 16px;
-  font-size: 0.75rem;
+  margin-top: 8px;
+  font-size: 0.65rem;
   font-style: italic;
   color: var(--ink);
   opacity: 0.6;
@@ -203,24 +203,102 @@
 /* ---------- responsive ---------- */
 
 @media (max-width: 900px) {
+  /* Side-by-side briefs only work with room to spare either side; on
+     narrow viewports both briefs now stay on screen at once (they used to
+     fade out before the other appeared), so they're stacked vertically
+     here instead of sitting side by side, to avoid them overlapping. */
   .ss-brief {
-    max-width: 78vw;
-    padding: 0 12px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 82vw;
+    padding: 0;
+    text-align: center;
   }
 
   .ss-brief-left {
-    left: 5vw;
+    top: 58%;
   }
 
   .ss-brief-right {
-    right: 5vw;
+    top: 76%;
   }
 
+  /* Narrow viewports can't fit a 3-column (brief / calendar / brief) row,
+     so the calendar drops to its own band below both briefs here instead. */
   .ss-cal-chapter {
+    top: 92%;
     width: 88vw;
   }
 
   .ss-cal-chapter-card {
-    padding: 22px 18px;
+    padding: 18px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ss-hero-intro-text {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  .ss-brief-text {
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  .ss-brief-left {
+    top: 56%;
+  }
+
+  .ss-brief-right {
+    top: 74%;
+  }
+
+  .ss-cal-chapter {
+    top: 90%;
+  }
+}
+
+/* Short viewports (older/smaller phones in portrait, e.g. iPhone SE) don't
+   have room for 5 stacked pieces of content at the sizes above — compress
+   further based on actual available height, not just width. */
+@media (max-height: 700px) and (max-width: 600px) {
+  .ss-hero-intro-text {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .ss-brief-text {
+    font-size: 0.92rem;
+    line-height: 1.3;
+  }
+
+  .ss-hero-intro {
+    top: 32%;
+  }
+
+  .ss-brief-left {
+    top: 62%;
+  }
+
+  .ss-brief-right {
+    top: 82%;
+  }
+
+  .ss-cal-chapter {
+    top: 95%;
+  }
+
+  .ss-cal-chapter-card {
+    padding: 12px 14px;
+  }
+
+  .ss-cal-chapter-list {
+    gap: 3px;
+  }
+
+  .ss-cal-chapter-list li {
+    font-size: 0.75rem;
   }
 }

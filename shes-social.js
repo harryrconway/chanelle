@@ -22,20 +22,18 @@
   const LEFT_HEART_ROTATIONS = [-10, 12];
   const RIGHT_HEART_ROTATIONS = [10, -14];
 
-  // Phase windows as fractions of total scroll progress (0-1). Boundaries
-  // deliberately overlap a few percent at chapter hand-offs so the incoming
-  // chapter is already cross-fading in while the outgoing one finishes.
+  // Phase windows as fractions of total scroll progress (0-1). Every
+  // content chapter now only ever fades IN and then stays on screen — the
+  // page builds up rather than swapping chapter for chapter — so windows
+  // just need to not collide with each other, not leave room for an exit.
   const P = {
-    circleGrow: [0, 0.075],
-    headingDock: [0.06, 0.15],
-    introIn: [0.14, 0.22],
-    introOut: [0.28, 0.34],
-    leftIn: [0.31, 0.37],
-    leftOut: [0.46, 0.51],
-    blueGrow: [0.48, 0.6],
-    rightIn: [0.57, 0.63],
-    rightOut: [0.72, 0.77],
-    calIn: [0.75, 0.81],
+    circleGrow: [0, 0.06],
+    headingDock: [0.05, 0.13],
+    introIn: [0.12, 0.2],
+    leftIn: [0.24, 0.32],
+    rightIn: [0.32, 0.4],
+    blueGrow: [0.42, 0.56],
+    calIn: [0.6, 0.7],
   };
 
   let dockDistance = 0;
@@ -99,8 +97,8 @@
     const dock = mapRange(progress, P.headingDock[0], P.headingDock[1]);
     heading.style.transform = `translateY(${(dockDistance * dock).toFixed(1)}px) scale(${(1 + (HEADING_MAX_SCALE - 1) * dock).toFixed(3)})`;
 
-    // Intro: fade in, hold, fade out.
-    const introEased = fadeWindow(progress, P.introIn[0], P.introIn[1], P.introOut[0], P.introOut[1]);
+    // Intro: fades in, then stays on screen.
+    const introEased = fadeWindow(progress, P.introIn[0], P.introIn[1], 1, 1);
     intro.style.opacity = introEased.toFixed(3);
     intro.style.transform = `translateY(${(24 * (1 - introEased)).toFixed(1)}px)`;
     introHearts.forEach((heart, i) => {
@@ -109,8 +107,8 @@
       heart.style.transform = `scale(${(0.3 + 0.7 * t).toFixed(3)}) rotate(${INTRO_HEART_ROTATIONS[i] || 0}deg)`;
     });
 
-    // Left brief: fade in, hold, fade out; slides in from the left.
-    const leftEased = fadeWindow(progress, P.leftIn[0], P.leftIn[1], P.leftOut[0], P.leftOut[1]);
+    // Left brief: fades in from the left, then stays on screen.
+    const leftEased = fadeWindow(progress, P.leftIn[0], P.leftIn[1], 1, 1);
     briefLeft.style.opacity = leftEased.toFixed(3);
     briefLeft.style.transform = `translate(0, -50%) translateX(${(-SLIDE_DISTANCE * (1 - leftEased)).toFixed(1)}px)`;
     briefLeftHearts.forEach((heart, i) => {
@@ -119,8 +117,8 @@
       heart.style.transform = `scale(${(0.3 + 0.7 * t).toFixed(3)}) rotate(${LEFT_HEART_ROTATIONS[i] || 0}deg)`;
     });
 
-    // Right brief: fade in, hold, fade out; slides in from the right.
-    const rightEased = fadeWindow(progress, P.rightIn[0], P.rightIn[1], P.rightOut[0], P.rightOut[1]);
+    // Right brief: fades in from the right, then stays on screen.
+    const rightEased = fadeWindow(progress, P.rightIn[0], P.rightIn[1], 1, 1);
     briefRight.style.opacity = rightEased.toFixed(3);
     briefRight.style.transform = `translate(0, -50%) translateX(${(SLIDE_DISTANCE * (1 - rightEased)).toFixed(1)}px)`;
     briefRightHearts.forEach((heart, i) => {
@@ -132,7 +130,7 @@
     // Calendar: fades in, then holds through the rest of the scroll.
     const calEased = fadeWindow(progress, P.calIn[0], P.calIn[1], 1, 1);
     calendar.style.opacity = calEased.toFixed(3);
-    calendar.style.transform = `translateY(${(24 * (1 - calEased)).toFixed(1)}px)`;
+    calendar.style.transform = `translateY(calc(-50% + ${(24 * (1 - calEased)).toFixed(1)}px))`;
   }
 
   function loop() {
