@@ -2,7 +2,7 @@
 
 .ss-hero-scroll {
   position: relative;
-  height: 250vh;
+  height: 400vh;
 }
 
 .ss-hero-pin {
@@ -38,4 +38,39 @@
   letter-spacing: -0.02em;
   color: var(--bg);
   text-align: center;
+  will-change: transform;
+}
+
+.ss-hero-intro {
+  position: absolute;
+  top: 58%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 1;
+  max-width: 640px;
+  padding: 0 24px;
+  text-align: center;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.ss-hero-intro-hearts {
+  position: relative;
+  pointer-events: none;
+}
+
+.ss-hero-intro-hearts .heart {
+  position: absolute;
+}
+
+.ss-hero-heart-1 { top: -34px; left: 22%; width: 26px; }
+.ss-hero-heart-2 { top: -46px; right: 20%; left: auto; width: 20px; }
+.ss-hero-heart-3 { top: -14px; left: 48%; width: 22px; }
+
+.ss-hero-intro-text {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink);
 }
