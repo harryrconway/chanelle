@@ -1,11 +1,11 @@
-/* ---------- hero: growing pink circle ---------- */
+/* ---------- story: pinned scroll with growing circles + fading chapters ---------- */
 
-.ss-hero-scroll {
+.ss-story-scroll {
   position: relative;
-  height: 400vh;
+  height: 750vh;
 }
 
-.ss-hero-pin {
+.ss-story-pin {
   position: sticky;
   top: 0;
   height: 100vh;
@@ -20,6 +20,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 0;
   width: 140px;
   height: 140px;
   border-radius: 50%;
@@ -28,9 +29,22 @@
   will-change: transform;
 }
 
+.ss-circle-blue {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--page-bg) 0%, rgba(158, 220, 245, 0) 70%);
+  transform: translate(-50%, -50%) scale(var(--circle-scale-blue, 1));
+  will-change: transform;
+}
+
 .ss-hero-text {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   font-family: 'Fredoka', var(--font-body);
   font-weight: 700;
   font-size: clamp(2.6rem, 8vw, 7rem);
@@ -47,7 +61,7 @@
   left: 0;
   right: 0;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 2;
   max-width: 640px;
   padding: 0 24px;
   text-align: center;
@@ -69,8 +83,144 @@
 .ss-hero-heart-3 { top: -14px; left: 48%; width: 22px; }
 
 .ss-hero-intro-text {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
   font-weight: 600;
   line-height: 1.6;
   color: var(--ink);
+}
+
+/* ---------- left / right briefs ---------- */
+
+.ss-brief {
+  position: absolute;
+  top: 58%;
+  z-index: 2;
+  max-width: 380px;
+  padding: 0 20px;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.ss-brief-left {
+  left: 6vw;
+  text-align: left;
+}
+
+.ss-brief-right {
+  right: 6vw;
+  text-align: right;
+}
+
+.ss-brief-hearts {
+  position: relative;
+  pointer-events: none;
+}
+
+.ss-brief-hearts .heart {
+  position: absolute;
+}
+
+.ss-brief-left .ss-brief-heart-1 { top: -30px; left: 10%; width: 22px; }
+.ss-brief-left .ss-brief-heart-2 { top: -14px; right: 8%; left: auto; width: 18px; }
+.ss-brief-right .ss-brief-heart-3 { top: -30px; right: 10%; width: 22px; }
+.ss-brief-right .ss-brief-heart-4 { top: -14px; left: 8%; width: 18px; }
+
+.ss-brief-text {
+  font-size: clamp(1.05rem, 1.9vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ---------- calendar chapter ---------- */
+
+.ss-cal-chapter {
+  position: absolute;
+  top: 58%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 2;
+  width: min(420px, 86vw);
+  text-align: center;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.ss-cal-chapter-eyebrow {
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.ss-cal-chapter-card {
+  background: var(--stone);
+  border-radius: 24px;
+  padding: 28px 24px;
+  box-shadow: 0 16px 30px rgba(196, 54, 112, 0.18);
+}
+
+.ss-cal-chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  text-align: left;
+}
+
+.ss-cal-chapter-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.95rem;
+}
+
+.ss-cal-chapter-date {
+  font-weight: 700;
+  color: var(--bg);
+  white-space: nowrap;
+}
+
+.ss-cal-chapter-name {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+
+.ss-cal-chapter-note {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .ss-brief {
+    max-width: 78vw;
+    padding: 0 12px;
+  }
+
+  .ss-brief-left {
+    left: 5vw;
+  }
+
+  .ss-brief-right {
+    right: 5vw;
+  }
+
+  .ss-cal-chapter {
+    width: 88vw;
+  }
+
+  .ss-cal-chapter-card {
+    padding: 22px 18px;
+  }
 }
