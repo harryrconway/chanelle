@@ -12,7 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Mrs+Saint+Delafield&display=swap">
   <link rel="stylesheet" href="style.css">
 
   <script src="main.js" defer></script>
@@ -20,10 +20,10 @@
 <body>
   <header class="site-header">
     <nav class="site-nav" aria-label="Main">
-      <a href="#">CM</a>
+      <a href="#">Home</a>
       <a class="site-nav__link" href="#about">About</a>
       <a class="site-nav__link" href="#what-i-do">What I do</a>
-      <a class="site-nav__link" href="#shes-social">She’s Social</a>
+      <a class="site-nav__link" href="#media">Media</a>
       <a class="site-nav__link" href="#contact">Contact</a>
       <button class="site-nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
@@ -36,13 +36,13 @@
       <a class="menu__link" href="#"><span>Home</span></a>
       <a class="menu__link" href="#about"><span>About</span></a>
       <a class="menu__link" href="#what-i-do"><span>What I do</span></a>
-      <a class="menu__link" href="#shes-social"><span>She’s Social</span></a>
+      <a class="menu__link" href="#media"><span>Media</span></a>
       <a class="menu__link" href="#contact"><span>Contact</span></a>
     </nav>
 
     <div class="menu__footer">
       <a class="menu__email" href="mailto:hello@chanelle.au">hello@chanelle.au</a>
-      <a class="menu__cta" href="#contact" data-enquiry="Consultation call">Book a consultation call</a>
+      <a class="button button--pink menu__cta" href="#contact" data-enquiry="Consultation call">Book a consultation call</a>
       <ul class="menu__social" aria-label="Follow Chanelle">
         <li><a href="https://www.instagram.com/chanellemorriss/" target="_blank" rel="noopener">Instagram</a></li>
         <li><a href="https://www.tiktok.com/@chanellemorriss" target="_blank" rel="noopener">TikTok</a></li>
@@ -64,8 +64,8 @@
 
       <div class="hero__band">
         <blockquote class="hero__quote">
-          <p>“Your <em>vision</em> may shape what you see, but your <em>mindset</em> determines what you believe is <em>possible.</em>”</p>
-          <footer>— Chanelle</footer>
+          <p>“It was never my disability holding me back. It was my <em>mindset</em> about my disability that did.”</p>
+          <footer class="hero__signature">Chanelle</footer>
         </blockquote>
       </div>
     </section>
@@ -81,9 +81,9 @@
       <div class="about__content">
         <h2 class="about__title" id="about-title">I know what it’s like to be <em>underestimated.</em></h2>
         <p>Born with 30% vision and legally blind in one eye, I grew up hearing what I couldn’t do. At 16 I was told I’d never drive. I believed every word, until I was housebound and at rock bottom.</p>
-        <p>So I challenged those beliefs. I took on a solo snow season in New Zealand, graduated with a Bachelor of Social Welfare and ran a half marathon. It was never my eye condition holding me back. It was my <em>mindset.</em></p>
+        <p>So I challenged those beliefs. I took on a solo snow season in New Zealand, graduated with a Bachelor of Social Welfare and ran a half marathon, and found out what I was <em>really</em> capable of.</p>
         <p>Now I help audiences across Australia replace fear with belief, and step into a mindset that says “watch me”.</p>
-        <a class="about__cta" href="#contact">Work with me</a>
+        <a class="button" href="#contact">Work with me</a>
       </div>
 
       <ul class="about__roles">
@@ -129,7 +129,7 @@
       </ul>
     </section>
 
-    <section class="media" aria-labelledby="media-title">
+    <section class="media" id="media" aria-labelledby="media-title">
       <h2 class="media__heading" id="media-title">Media</h2>
 
       <ul class="media__list">
@@ -188,54 +188,6 @@
       </ul>
     </section>
 
-    <section class="social" id="shes-social" aria-labelledby="social-title">
-      <div class="social__top">
-        <p class="social__label">My community</p>
-
-        <!-- Shared heart counter. The total lives on a counter service (Abacus),
-             not on the host, so it keeps working on any hosting. To use your own
-             counter later, change these two addresses. -->
-        <div class="heart"
-             data-get="https://abacus.jasoncameron.dev/get/chanelle-morris-site/shes-social-hearts"
-             data-hit="https://abacus.jasoncameron.dev/hit/chanelle-morris-site/shes-social-hearts">
-          <button class="heart__button" type="button" aria-pressed="false">
-            <svg class="heart__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.4.6 1.6.6 2 0 .7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/>
-            </svg>
-            <span class="visually-hidden">Send She’s Social some love</span>
-          </button>
-          <p class="heart__count"><span class="heart__number" aria-live="polite">–</span><span class="visually-hidden"> hearts</span></p>
-        </div>
-      </div>
-
-      <h2 class="social__title" id="social-title"><span>She’s Social</span></h2>
-
-      <ul class="social__values" aria-label="Our core values">
-        <li>Connection</li>
-        <li>Authenticity</li>
-        <li>Fun</li>
-      </ul>
-
-      <div class="social__info">
-        <div>
-          <h3 class="social__heading">What we do</h3>
-          <p>A women’s community social group bringing people together. Based on the Gold Coast, we facilitate weekly walks, social nights and monthly events. Our mission is to help individuals connect, grow and shine.</p>
-        </div>
-        <div>
-          <h3 class="social__heading">Walks</h3>
-          <p>Sunday 7am and Wednesday 5pm (QLD time) at Alia Cafe in Coolangatta.</p>
-        </div>
-        <div>
-          <h3 class="social__heading">Events</h3>
-          <p>From lawn bowls to dance class, all around the Gold Coast.</p>
-        </div>
-        <div class="social__follow">
-          <p>Follow our page for updates and locations.</p>
-          <a class="social__cta" href="https://www.instagram.com/shessocial_/" target="_blank" rel="noopener">Follow @shessocial_</a>
-        </div>
-      </div>
-    </section>
-
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="contact__intro">
         <h2 class="contact__title" id="contact-title">Get in touch</h2>
@@ -288,7 +240,7 @@
           <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off">
         </div>
 
-        <button class="contact__submit" type="submit">Send enquiry</button>
+        <button class="button contact__submit" type="submit">Send enquiry</button>
         <p class="contact__status" role="status" aria-live="polite"></p>
       </form>
     </section>
@@ -302,7 +254,7 @@
         <h2 class="site-footer__heading">Work with me</h2>
         <p>Planning an event? Get in touch for speaker rates, or book a consultation call to talk through your event.</p>
         <a class="site-footer__email" href="mailto:hello@chanelle.au">hello@chanelle.au</a>
-        <a class="site-footer__cta" href="#contact" data-enquiry="Consultation call">Book a consultation call</a>
+        <a class="button button--pink" href="#contact" data-enquiry="Consultation call">Book a consultation call</a>
       </div>
 
       <nav aria-label="Footer">
@@ -311,7 +263,7 @@
           <li><a href="#">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#what-i-do">What I do</a></li>
-          <li><a href="#shes-social">She’s Social</a></li>
+          <li><a href="#media">Media</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
