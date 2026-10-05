@@ -24,12 +24,13 @@
   --pad: clamp(16px, 4vw, 4rem);   /* side padding */
 
   /* Hero: CHANELLE · photo · MORRIS. The photo is a 2:3 portrait (height 1.5x
-     its width). Both names share one size, set so CHANELLE (2.77em wide) fills
-     its side and just touches the photo; then stretched tall. */
-  --stage-top: clamp(1.5rem, 6svh, 4rem);
+     its width). The names run to the screen edges like the nav; both share one
+     size, set so CHANELLE (2.77em wide) fills the left side up to the photo,
+     then stretched tall. */
+  --stage-top: clamp(2.5rem, 9svh, 6rem);   /* room above the stretched names */
   --photo-w: clamp(220px, min(26vw, 46svh), 420px);
   --tuck: calc(var(--photo-w) * 0.03);   /* just enough to tuck under the photo's edge */
-  --hero-name-size: calc(((100vw - 2 * var(--pad) - var(--photo-w)) / 2 + var(--tuck)) / 2.8);
+  --hero-name-size: calc(((100vw - var(--photo-w)) / 2 + var(--tuck)) / 2.8);
   --hero-stretch: 1.5;
 }
 
@@ -441,13 +442,14 @@ em {
 
 /* --- Name and photo -------------------------------------------------------- */
 
-/* Desktop and tablet: three columns, the photo in the middle. The names sit
-   level with the upper part of the photo and tuck under its edges. */
+/* Desktop and tablet: three columns, the photo in the middle. CHANELLE runs
+   from the left edge to the photo, MORRIS sits against the right edge, and the
+   photo starts halfway down the letters. */
 .hero__stage {
   display: grid;
   grid-template-columns: 1fr var(--photo-w) 1fr;
   align-items: start;
-  padding: var(--stage-top) var(--pad) 0;
+  padding: var(--stage-top) 0 0;
 }
 
 .hero__first,
@@ -455,7 +457,6 @@ em {
   position: relative;
   z-index: 1;
   margin: 0;
-  margin-top: calc(var(--photo-w) * 0.45 - var(--hero-name-size) * 0.37);   /* centred ~30% down the photo */
   font-size: var(--hero-name-size);
   line-height: 1;
   text-box: trim-both cap alphabetic;
@@ -464,17 +465,16 @@ em {
 }
 
 .hero__first {
-  justify-self: end;
+  justify-self: start;
   margin-right: calc(var(--tuck) * -1);
 }
 
 .hero__last {
-  justify-self: start;
-  margin-left: calc(var(--tuck) * -1);
+  justify-self: end;
 }
 
-/* The bottom third hangs into the pink band (a third of a 2:3 photo's height
-   is half its width). */
+/* Top edge halfway down the names' capitals; the bottom third hangs into the
+   pink band (a third of a 2:3 photo's height is half its width). */
 .hero__photo {
   position: relative;
   z-index: 2;
@@ -482,7 +482,7 @@ em {
   grid-row: 1;
   width: var(--photo-w);
   aspect-ratio: 2 / 3;
-  margin: 0 0 calc(var(--photo-w) * -0.5);
+  margin: calc(var(--hero-name-size) * 0.735 * 0.5) 0 calc(var(--photo-w) * -0.5);
   box-shadow: 0 2rem 4rem -1.5rem rgb(26 20 22 / 0.45);
   transform: translateY(var(--photo-rise, 0px));   /* set by main.js on scroll */
 }
