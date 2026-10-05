@@ -1130,8 +1130,9 @@ em {
 }
 
 /* Custom dropdown (built by main.js from the <select>, which it then hides).
-   Same box as the other fields; the open list is ink with a pink edge, and the
-   option under your finger or cursor turns pink. */
+   Same box as the other fields; the open list is an off-white panel on the
+   pink, the current choice is soft pink, and the option under your finger or
+   cursor turns ink. */
 .select {
   position: relative;
 }
@@ -1192,9 +1193,10 @@ em {
   margin: 0;
   padding: 0;
   list-style: none;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  box-shadow: 0 1.5rem 3rem -1rem rgb(0 0 0 / 0.6);
+  border: 2px solid var(--ink);
+  background: var(--off-white);
+  color: var(--ink);
+  box-shadow: 0 1.5rem 3rem -1rem rgb(26 20 22 / 0.45);
 }
 
 .select__list[hidden] {
@@ -1211,12 +1213,12 @@ em {
 }
 
 .select__option[aria-selected="true"] {
-  background: color-mix(in oklab, var(--pink) 30%, var(--ink));
+  background: color-mix(in oklab, var(--pink) 30%, var(--off-white));
 }
 
 .select__option.is-active {
-  background: var(--pink);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--off-white);
 }
 
 /* Fixed size: the message box can't be dragged bigger. */
