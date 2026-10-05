@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Security: only load code, styles and fonts from this site and Google Fonts;
+       no plugins, no framing tricks, forms only post to this site, email or HTTPS.
+       Narrow connect-src/form-action to the form service once one is chosen. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https:; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'; frame-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>My story · Chanelle Morris</title>
+  <meta name="description" content="Born with 30% vision and told what she couldn’t do, Chanelle Morris shares how changing her mindset changed her life.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Mrs+Saint+Delafield&display=swap">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="main.js" defer></script>
+</head>
+<body class="page page--about">
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a class="site-nav__link" href="about.html" aria-current="page">About</a>
+      <a class="site-nav__link" href="what-i-do.html">What I do</a>
+      <a class="site-nav__link" href="media.html">Media</a>
+      <a class="site-nav__link" href="contact.html">Contact</a>
+      <button class="site-nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="menu" id="menu" inert>
+    <nav class="menu__nav" aria-label="Menu">
+      <a class="menu__link" href="index.html"><span>Home</span></a>
+      <a class="menu__link" href="about.html" aria-current="page"><span>About</span></a>
+      <a class="menu__link" href="what-i-do.html"><span>What I do</span></a>
+      <a class="menu__link" href="media.html"><span>Media</span></a>
+      <a class="menu__link" href="contact.html"><span>Contact</span></a>
+    </nav>
+
+    <div class="menu__footer">
+      <a class="menu__email" href="mailto:hello@chanelle.au">hello@chanelle.au</a>
+      <a class="button button--pink menu__cta" href="contact.html?enquiry=consultation">Book a consultation call</a>
+      <ul class="menu__social" aria-label="Follow Chanelle">
+        <li><a href="https://www.instagram.com/chanellemorriss/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@chanellemorriss" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@chanellemorriss" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://au.linkedin.com/in/chanelle-morris-b54a25160" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://linktr.ee/chanellemorris" target="_blank" rel="noopener">Linktree</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="page-hero__text">
+        <p class="page-hero__label">About me</p>
+        <h1 class="page-hero__title" id="page-title"><span>My story</span></h1>
+        <div class="prose page-hero__intro">
+          <p>I didn’t always believe in myself. In fact, for a long time, I thought I wasn’t capable, good enough or ‘normal’ enough to do the things I dreamed of.</p>
+          <p>Living with low vision has taught me that the greatest barriers we face aren’t always physical. They’re the beliefs we hold about ourselves.</p>
+        </div>
+        <div class="page-hero__buttons">
+        <a class="button" href="contact.html?enquiry=speaking">Book Chanelle to speak</a>
+        </div>
+      </div>
+      <figure class="page-hero__photo">
+        <img src="images/photos/cane-folded-1024.jpg" srcset="images/photos/cane-folded-640.jpg 640w, images/photos/cane-folded-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle grinning as she holds her folded white cane" decoding="async">
+      </figure>
+    </section>
+
+    <section class="timeline" aria-labelledby="timeline-title">
+      <h2 class="timeline__title" id="timeline-title">My journey so far</h2>
+      <ol class="timeline__list">
+        <li class="timeline__item">
+          <p class="timeline__when">Growing up</p>
+          <p class="timeline__what">Born with 30% vision and told what I couldn’t do</p>
+        </li>
+        <li class="timeline__item">
+          <p class="timeline__when">At 16</p>
+          <p class="timeline__what">Told I would never be able to drive</p>
+        </li>
+        <li class="timeline__item">
+          <p class="timeline__when">Rock bottom</p>
+          <p class="timeline__what">Housebound and stuck in ‘I can’t’</p>
+        </li>
+        <li class="timeline__item">
+          <p class="timeline__when">The turning point</p>
+          <p class="timeline__what">A solo snow season in New Zealand</p>
+        </li>
+        <li class="timeline__item">
+          <p class="timeline__when">Since then</p>
+          <p class="timeline__what">Graduated with a Bachelor of Social Welfare</p>
+        </li>
+        <li class="timeline__item">
+          <p class="timeline__when">Today</p>
+          <p class="timeline__what">Sharing my story with audiences across Australia</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter__text">
+        <p class="chapter__label">My diagnosis</p>
+        <h2 class="chapter__title">“I was stuck in the narrative of ‘I can’t’.”</h2>
+        <div class="prose">
+          <p>I was born with only 30% total vision and am legally blind in one eye. My condition is nameless, and how it happened remains unclear. Having such low vision limits my ability to read, navigate spaces and function.</p>
+          <p>Having a disability, I spent my early years hearing what I couldn’t or shouldn’t do. So I developed negative beliefs about myself and my capabilities, which I carried throughout my life.</p>
+          <p>These beliefs kept me stuck, never trying to achieve goals. I became a victim to my condition and my mindset. I developed such fierce anxiety growing up, as the world seemed like such a scary place for someone like me. It was too overwhelming to go anywhere on my own; I always needed people to help me complete every task.</p>
+          <p>Or so I thought. But this couldn’t be further from the truth.</p>
+        </div>
+        <!-- TODO(Chanelle): update the "30%" wording and add more about her condition here when she is ready. -->
+      </div>
+      <figure class="chapter__photo">
+        <img src="images/photos/low-vision-badge-1024.jpg" srcset="images/photos/low-vision-badge-640.jpg 640w, images/photos/low-vision-badge-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle smiling as she holds up a badge that reads ‘I have low vision’" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <section class="chapter chapter--flip">
+      <div class="chapter__text">
+        <p class="chapter__label">Rock bottom</p>
+        <h2 class="chapter__title">“I became housebound and eventually hit rock bottom.”</h2>
+        <div class="prose">
+          <p>Growing up, I was embarrassed of my disability, so I never spoke about it. I hid this part of myself away. If my condition was ever made obvious I would break down, as I couldn’t stand being ‘different’.</p>
+          <p>At the age of 16, I was told I would never be able to drive a car. This broke me. I lost my independence, and once again I couldn’t do something. It fed my negative beliefs about myself, proving them true.</p>
+          <p>I continued living my life through a negative lens, so consumed by what I didn’t have or couldn’t do. I became housebound and eventually hit rock bottom.</p>
+        </div>
+      </div>
+      <figure class="chapter__photo">
+        <img src="images/photos/beach-sitting-1024.jpg" srcset="images/photos/beach-sitting-640.jpg 640w, images/photos/beach-sitting-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle sitting on the sand, resting her cheek on her hand" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <section class="statement">
+      <p class="statement__label">A life-changing decision</p>
+      <blockquote class="statement__quote">
+        <p>“To change your life, you must first identify your negative beliefs, then challenge them to prove them wrong. This will set you <em>free.</em>”</p>
+      </blockquote>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter__text">
+        <p class="chapter__label">The turning point</p>
+        <h2 class="chapter__title">A solo snow season in New Zealand</h2>
+        <div class="prose">
+          <p>I needed to change my life, urgently. After getting myself into therapy and studying the mind, I discovered that statement, and it became how I was going to change my life.</p>
+          <p>A few weeks later I found myself travelling to New Zealand for a solo snow season. New Zealand changed my life. I challenged myself and my mindset daily. I learnt to snowboard, cook, clean, make friends, navigate a new town, use public transport and live independently, and this changed me.</p>
+          <p>I realised I am capable and good enough.</p>
+        </div>
+      </div>
+      <figure class="chapter__photo">
+        <img src="images/photos/cane-stool-1024.jpg" srcset="images/photos/cane-stool-640.jpg 640w, images/photos/cane-stool-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle sitting on a stool on the rocks, holding her white cane" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <section class="chapter chapter--flip">
+      <div class="chapter__text">
+        <p class="chapter__label">Motivational speaking</p>
+        <h2 class="chapter__title">“The most confident version of myself, unstoppable even!”</h2>
+        <div class="prose">
+          <p>My condition has always remained the same, but my mindset changed. Therefore I changed, and my life changed.</p>
+          <p>Since that trip, I have graduated from university with a Bachelor of Social Welfare, travelled the world and learnt new skills. When I ran my first half marathon with only 30% vision, I realised something powerful: our limits are rarely as fixed as we think they are.</p>
+          <p>I started a business to share my discoveries and help others realise their own potential and overcome their negative beliefs. Today I am a confidence and mindset motivational speaker, and I host events to help others ignite their fire. Everyone has the power within themselves; they just don’t realise it yet.</p>
+        </div>
+      </div>
+      <figure class="chapter__photo">
+        <img src="images/photos/speaking-mic-1024.jpg" srcset="images/photos/speaking-mic-640.jpg 640w, images/photos/speaking-mic-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle speaking into a microphone with her notebook open, in front of dark rocks" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <section class="community" aria-labelledby="community-title">
+      <div class="community__text">
+        <p class="chapter__label">Community and content</p>
+        <h2 class="chapter__title" id="community-title">Bringing people together</h2>
+        <div class="prose">
+          <p>I founded <strong>She’s Social</strong>, a women’s community social group on the Gold Coast built on connection, authenticity and fun. Living with low vision myself, I know how important it is to feel safe and included. We meet for walks every Sunday at 7am and Wednesday at 5pm (QLD time) at Alia Cafe in Coolangatta, plus social nights and monthly events, from lawn bowls to dance class.</p>
+          <p>Online, I share daily life with low vision: vlogs and challenges to build confidence and self-belief, plus golf, ocean adventures, cooking and makeup. The Courier-Mail even called me a ‘Qld TikTok queen’.</p>
+        </div>
+        <ul class="community__links">
+          <li><a class="button" href="https://www.instagram.com/shessocial_/" target="_blank" rel="noopener">She’s Social on Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@chanellemorriss" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/chanellemorriss/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@chanellemorriss" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
+      </div>
+      <div class="community__photos">
+        <figure><img src="images/photos/rocks-laughing-1024.jpg" srcset="images/photos/rocks-laughing-640.jpg 640w, images/photos/rocks-laughing-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 33vw" width="1024" height="1536" alt="Chanelle laughing, sitting on the rocks by the sea" loading="lazy" decoding="async"></figure>
+        <figure><img src="images/photos/beach-kick-1024.jpg" srcset="images/photos/beach-kick-640.jpg 640w, images/photos/beach-kick-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 33vw" width="1024" height="1536" alt="Chanelle kicking up her heel on the sand, laughing" loading="lazy" decoding="async"></figure>
+        <figure><img src="images/photos/celebration-1024.jpg" srcset="images/photos/celebration-640.jpg 640w, images/photos/celebration-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 33vw" width="1024" height="1536" alt="Chanelle laughing, holding a bottle of bubbles and two glasses on the beach" loading="lazy" decoding="async"></figure>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <h2 class="cta-band__title">Ready to ignite your fire?</h2>
+      <p class="cta-band__text">Bring Chanelle’s story to your school, workplace, conference or community event.</p>
+      <div class="cta-band__buttons">
+        <a class="button button--pink" href="contact.html?enquiry=speaking">Book Chanelle to speak</a>
+        <a class="button button--outline" href="contact.html?enquiry=consultation">Book a consultation call</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__statement">Changing the way you see what’s <em>possible.</em></p>
+
+    <div class="site-footer__columns">
+      <div class="site-footer__contact">
+        <h2 class="site-footer__heading">Work with me</h2>
+        <p>Planning an event? Get in touch for speaker rates, or book a consultation call to talk through your event.</p>
+        <a class="site-footer__email" href="mailto:hello@chanelle.au">hello@chanelle.au</a>
+        <a class="button button--pink" href="contact.html?enquiry=consultation">Book a consultation call</a>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="site-footer__heading">Explore</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="what-i-do.html">What I do</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="site-footer__heading">Services</h2>
+        <ul>
+          <li>Motivational speaking</li>
+          <li>Event hosting / MC</li>
+          <li>She’s Social community</li>
+          <li>Content creation</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="site-footer__heading">Follow</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/chanellemorriss/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@chanellemorriss" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.youtube.com/@chanellemorriss" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://au.linkedin.com/in/chanelle-morris-b54a25160" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://linktr.ee/chanellemorris" target="_blank" rel="noopener">Linktree</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 Chanelle Morris</p>
+      <p>Motivational speaker · Event host · Content creator · Founder, She’s Social</p>
+      <a href="#">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>

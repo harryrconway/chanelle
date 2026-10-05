@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Security: only load code, styles and fonts from this site and Google Fonts;
+       no plugins, no framing tricks, forms only post to this site, email or HTTPS.
+       Narrow connect-src/form-action to the form service once one is chosen. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https:; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'; frame-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Media · Chanelle Morris</title>
+  <meta name="description" content="Podcasts, interviews and talks featuring motivational speaker Chanelle Morris.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Mrs+Saint+Delafield&display=swap">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="main.js" defer></script>
+</head>
+<body class="page page--media">
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a class="site-nav__link" href="about.html">About</a>
+      <a class="site-nav__link" href="what-i-do.html">What I do</a>
+      <a class="site-nav__link" href="media.html" aria-current="page">Media</a>
+      <a class="site-nav__link" href="contact.html">Contact</a>
+      <button class="site-nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="menu" id="menu" inert>
+    <nav class="menu__nav" aria-label="Menu">
+      <a class="menu__link" href="index.html"><span>Home</span></a>
+      <a class="menu__link" href="about.html"><span>About</span></a>
+      <a class="menu__link" href="what-i-do.html"><span>What I do</span></a>
+      <a class="menu__link" href="media.html" aria-current="page"><span>Media</span></a>
+      <a class="menu__link" href="contact.html"><span>Contact</span></a>
+    </nav>
+
+    <div class="menu__footer">
+      <a class="menu__email" href="mailto:hello@chanelle.au">hello@chanelle.au</a>
+      <a class="button button--pink menu__cta" href="contact.html?enquiry=consultation">Book a consultation call</a>
+      <ul class="menu__social" aria-label="Follow Chanelle">
+        <li><a href="https://www.instagram.com/chanellemorriss/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@chanellemorriss" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@chanellemorriss" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://au.linkedin.com/in/chanelle-morris-b54a25160" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://linktr.ee/chanellemorris" target="_blank" rel="noopener">Linktree</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="page-hero__text">
+        <p class="page-hero__label">Media</p>
+        <h1 class="page-hero__title" id="page-title"><span>Media</span></h1>
+        <div class="prose page-hero__intro">
+          <p>Podcasts, interviews and talks where I share my story: growing up with low vision, hitting rock bottom, and how changing my mindset changed my life.</p>
+        </div>
+      </div>
+      <figure class="page-hero__photo">
+        <img src="images/photos/over-shoulder-1024.jpg" srcset="images/photos/over-shoulder-640.jpg 640w, images/photos/over-shoulder-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle looking back over her shoulder at the water’s edge" decoding="async">
+      </figure>
+    </section>
+
+    <section class="cards" aria-labelledby="cards-title">
+      <h2 class="cards__title" id="cards-title">Watch and listen</h2>
+      <ul class="cards__list">
+        <li class="card">
+          <a class="card__link" href="https://www.youtube.com/watch?v=QLoELsAYJAw" target="_blank" rel="noopener">
+            <img class="card__image" src="images/media/spoony-ambassador.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
+            <span class="card__type">Video · 2 min</span>
+            <span class="card__show">Spoony</span>
+            <span class="card__title">Meet our new Spoony ambassador</span>
+            <span class="card__watch">Watch on YouTube</span>
+          </a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="https://www.youtube.com/watch?v=zX71jr0fkV8" target="_blank" rel="noopener">
+            <img class="card__image" src="images/media/spoony-episode-11.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
+            <span class="card__type">Podcast · 40 min</span>
+            <span class="card__show">Spoony · Episode 11</span>
+            <span class="card__title">Navigating life with 30% vision</span>
+            <span class="card__watch">Watch on YouTube</span>
+          </a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="https://www.youtube.com/watch?v=YmX7a8defS8" target="_blank" rel="noopener">
+            <img class="card__image" src="images/media/navigating-disability.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
+            <span class="card__type">Podcast · 44 min</span>
+            <span class="card__show">Navigating Disability</span>
+            <span class="card__title">The reality of invisible disability: Chanelle’s journey to self-love</span>
+            <span class="card__watch">Watch on YouTube</span>
+          </a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="https://www.youtube.com/watch?v=S1gNTzDsEFc" target="_blank" rel="noopener">
+            <img class="card__image" src="images/media/chats-from-a-chair.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
+            <span class="card__type">Podcast · 44 min</span>
+            <span class="card__show">Chats From A Chair</span>
+            <span class="card__title">Day-to-day life, dating and a change in mindset</span>
+            <span class="card__watch">Watch on YouTube</span>
+          </a>
+        </li>
+        <li class="card">
+          <a class="card__link" href="https://www.youtube.com/watch?v=awF90AjRHGo" target="_blank" rel="noopener">
+            <img class="card__image" src="images/media/cusp-podcast-28.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
+            <span class="card__type">Podcast · 25 min</span>
+            <span class="card__show">The CUSP Podcast · #28</span>
+            <span class="card__title">Seeing beyond limits: Chanelle’s path to purpose and success</span>
+            <span class="card__watch">Watch on YouTube</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cta-band">
+      <h2 class="cta-band__title">Want Chanelle on your show or stage?</h2>
+      <p class="cta-band__text">For interviews, podcasts and speaking, get in touch.</p>
+      <div class="cta-band__buttons">
+        <a class="button button--pink" href="contact.html">Get in touch</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__statement">Changing the way you see what’s <em>possible.</em></p>
+
+    <div class="site-footer__columns">
+      <div class="site-footer__contact">
+        <h2 class="site-footer__heading">Work with me</h2>
+        <p>Planning an event? Get in touch for speaker rates, or book a consultation call to talk through your event.</p>
+        <a class="site-footer__email" href="mailto:hello@chanelle.au">hello@chanelle.au</a>
+        <a class="button button--pink" href="contact.html?enquiry=consultation">Book a consultation call</a>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="site-footer__heading">Explore</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="what-i-do.html">What I do</a></li>
+          <li><a href="media.html" aria-current="page">Media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="site-footer__heading">Services</h2>
+        <ul>
+          <li>Motivational speaking</li>
+          <li>Event hosting / MC</li>
+          <li>She’s Social community</li>
+          <li>Content creation</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="site-footer__heading">Follow</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/chanellemorriss/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@chanellemorriss" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.youtube.com/@chanellemorriss" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://au.linkedin.com/in/chanelle-morris-b54a25160" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://linktr.ee/chanellemorris" target="_blank" rel="noopener">Linktree</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 Chanelle Morris</p>
+      <p>Motivational speaker · Event host · Content creator · Founder, She’s Social</p>
+      <a href="#">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>

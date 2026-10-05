@@ -125,6 +125,12 @@ em {
   color: var(--ink);
 }
 
+.button--outline {
+  background: transparent;
+  color: inherit;
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
 .button:hover,
 .button:focus-visible {
   background: var(--off-white);
@@ -170,7 +176,8 @@ em {
 }
 
 .site-nav a:hover,
-.site-nav a:focus-visible {
+.site-nav a:focus-visible,
+.site-nav a[aria-current="page"] {
   color: var(--pink);
 }
 
@@ -353,6 +360,12 @@ em {
   text-box: trim-both cap alphabetic;
   transform: scaleY(1.15);
   transform-origin: right center;
+}
+
+.menu__link[aria-current="page"] span {
+  text-decoration: underline;
+  text-decoration-thickness: 0.05em;
+  text-underline-offset: 0.1em;
 }
 
 .menu__link:focus-visible {
@@ -554,12 +567,12 @@ em {
    the other, and her roles running along the bottom. */
 .about {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.1fr 0.75fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "label label"
-    "stat  content"
-    "roles roles";
+    "label label   label"
+    "stat  content photo"
+    "roles roles   roles";
   gap: clamp(1.25rem, 3svh, 3rem) clamp(2rem, 5vw, 6rem);
   min-height: var(--screen-h);
   padding: clamp(1.5rem, 4svh, 3rem) clamp(16px, 4vw, 4rem);
@@ -614,6 +627,20 @@ em {
   margin-top: 0.25em;
 }
 
+.about__photo {
+  grid-area: photo;
+  align-self: center;
+  margin: 0;
+  aspect-ratio: 2 / 3;
+  box-shadow: 0 1.5rem 3rem -1.5rem rgb(26 20 22 / 0.45);
+}
+
+.about__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Spread edge to edge like the nav. */
 .about__roles {
   grid-area: roles;
@@ -637,6 +664,7 @@ em {
       "label"
       "stat"
       "content"
+      "photo"
       "roles";
   }
 
@@ -719,8 +747,13 @@ em {
 .services__detail {
   grid-area: detail;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   padding: clamp(1.5rem, 4svh, 3rem) clamp(16px, 4vw, 4rem);
+}
+
+.services__more,
+.media__more {
+  justify-self: start;
 }
 
 .services__title {
@@ -794,7 +827,7 @@ em {
    each with its type, the outlet, the title and a link out. */
 .media {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   min-height: var(--screen-h);
   padding: clamp(1.5rem, 4svh, 3rem) clamp(16px, 4vw, 4rem);
   background: var(--green);
@@ -805,6 +838,10 @@ em {
   margin: 0 0 clamp(0.75rem, 2svh, 2rem);
   font-size: var(--nav-size);
   font-weight: 400;
+}
+
+.media__more {
+  margin-top: clamp(1rem, 3svh, 2rem);
 }
 
 .media__list {
@@ -1031,6 +1068,19 @@ em {
   line-height: 1.2;
 }
 
+.contact__photo {
+  width: min(100%, 15rem);
+  margin: 1.5rem 0 0;
+  aspect-ratio: 2 / 3;
+  box-shadow: 0 1.5rem 3rem -1.5rem rgb(26 20 22 / 0.45);
+}
+
+.contact__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .contact__intro a {
   color: inherit;
   text-decoration-thickness: 2px;
@@ -1244,6 +1294,389 @@ em {
 
 
 /* ==========================================================================
+   Pages: About, What I do, Media, Contact
+   ========================================================================== */
+
+/* Each page has its own colour (Home's "Get in touch" section is pink). */
+.page--about     { --page-colour: var(--yellow); }
+.page--what-i-do { --page-colour: var(--blue); }
+.page--media     { --page-colour: var(--green); }
+.contact-cta     { --page-colour: var(--pink); }
+
+/* Long reading text is in sentence case so it's easy to read; headings,
+   labels and short lines stay in capitals. */
+.prose {
+  font-size: clamp(1.25rem, 1.6vw, 1.55rem);
+  line-height: 1.3;
+  letter-spacing: 0.015em;
+  text-transform: none;
+}
+
+.prose p {
+  max-width: 36em;
+  margin: 0 0 0.9em;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Shared photo frame: 2:3 portrait with a soft shadow. */
+.page-hero__photo,
+.chapter__photo,
+.community__photos figure {
+  margin: 0;
+  aspect-ratio: 2 / 3;
+  box-shadow: 0 1.5rem 3rem -1.5rem rgb(26 20 22 / 0.45);
+}
+
+.page-hero__photo img,
+.chapter__photo img,
+.community__photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Page hero: a huge title and intro beside a photo, in the page colour --- */
+
+.page-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  min-height: var(--screen-h);
+  padding: clamp(1.5rem, 4svh, 3rem) var(--pad);
+  background: var(--page-colour);
+}
+
+.page-hero__label,
+.chapter__label,
+.statement__label {
+  margin: 0 0 1rem;
+  font-size: var(--nav-size);
+}
+
+/* The hero name's stretched capitals; the padding leaves room for the stretch. */
+.page-hero__title {
+  margin: 0 0 0.3em;
+  padding-block: 0.06em;
+  font-size: min(16vw, 28svh);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.page-hero__title span {
+  display: block;
+  text-box: trim-both cap alphabetic;
+  transform: scaleY(1.15);
+}
+
+/* "Get in touch" is longer than the page titles: keep it on one line. */
+.contact-cta .page-hero__title {
+  font-size: min(11vw, 24svh);
+}
+
+.page-hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.25rem, 3svh, 2rem);
+}
+
+.page-hero__photo {
+  justify-self: center;
+  width: min(100%, (var(--screen-h) - 6rem) / 1.5);
+}
+
+/* --- Journey timeline ------------------------------------------------------- */
+
+.timeline {
+  padding: clamp(3rem, 10svh, 6rem) var(--pad);
+  background: var(--ink);
+  color: var(--off-white);
+}
+
+.timeline__title {
+  margin: 0 0 clamp(1.5rem, 4svh, 2.5rem);
+  font-size: var(--nav-size);
+  font-weight: 400;
+  color: var(--page-colour);
+}
+
+.timeline__list {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.5rem clamp(1rem, 2vw, 2rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline__item {
+  padding-top: 1rem;
+  border-top: 3px solid var(--page-colour);
+}
+
+.timeline__when,
+.timeline__what {
+  margin: 0;
+}
+
+.timeline__when {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 2.2vw, 2.25rem);
+  line-height: 1;
+  color: var(--page-colour);
+}
+
+.timeline__what {
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  line-height: 1.2;
+}
+
+/* --- Story chapters: text beside a photo, alternating sides ----------------- */
+
+.chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 7rem);
+  padding: clamp(3rem, 12svh, 8rem) var(--pad);
+  background: var(--off-white);
+}
+
+.chapter--colour {
+  background: var(--page-colour);
+}
+
+.chapter__title {
+  margin: 0 0 0.6em;
+  font-size: clamp(2.5rem, 4.8vw, 5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.chapter__photo {
+  justify-self: center;
+  width: min(100%, 30rem);
+}
+
+.chapter--flip .chapter__photo {
+  order: -1;
+}
+
+.chapter__text > .button {
+  margin-top: 1.5rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+}
+
+.tags li {
+  padding: 0.45em 0.8em;
+  border: 2px solid var(--ink);
+  line-height: 1;
+}
+
+/* --- Statement: one big quote in the page colour ---------------------------- */
+
+.statement {
+  padding: clamp(4rem, 14svh, 9rem) var(--pad);
+  background: var(--page-colour);
+  text-align: center;
+}
+
+.statement__quote {
+  max-width: 24ch;
+  margin: 0 auto;
+  font-size: clamp(2.25rem, 5.5vw, 5.5rem);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.statement__quote p {
+  margin: 0;
+}
+
+/* --- Community and content: text, links and a row of photos ---------------- */
+
+.community {
+  display: grid;
+  gap: clamp(2rem, 6svh, 4rem);
+  padding: clamp(3rem, 12svh, 8rem) var(--pad);
+  background: var(--page-colour);
+}
+
+.community__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--nav-size);
+}
+
+.community__links a:not(.button) {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;   /* comfortable tap targets */
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+
+.community__photos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 2rem);
+}
+
+/* --- Call to action: a closing band in ink ---------------------------------- */
+
+.cta-band {
+  padding: clamp(4rem, 14svh, 9rem) var(--pad);
+  background: var(--ink);
+  color: var(--off-white);
+  text-align: center;
+}
+
+.cta-band__title {
+  margin: 0 0 0.3em;
+  font-size: clamp(3rem, 8vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.cta-band__text {
+  margin: 0 auto 2rem;
+  font-size: var(--nav-size);
+}
+
+.cta-band__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.cta-band .button:focus-visible {
+  outline-color: var(--off-white);
+}
+
+/* --- Media cards ------------------------------------------------------------- */
+
+.cards {
+  padding: clamp(3rem, 10svh, 6rem) var(--pad);
+}
+
+.cards__title {
+  margin: 0 0 clamp(1.5rem, 4svh, 2.5rem);
+  font-size: var(--nav-size);
+  font-weight: 400;
+}
+
+.cards__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  gap: clamp(2rem, 5svh, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card__link {
+  display: grid;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card__image {
+  width: 100%;
+  height: auto;   /* let the 16:9 shape win over the height attribute */
+  aspect-ratio: 16 / 9;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+  transition: scale 0.3s ease;
+}
+
+.card__type {
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+}
+
+.card__show {
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  line-height: 1;
+}
+
+.card__title {
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  line-height: 1.2;
+}
+
+.card__watch {
+  justify-self: start;
+  font-size: var(--nav-size);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+
+.card__link:hover .card__watch,
+.card__link:focus-visible .card__watch {
+  text-decoration-thickness: 4px;
+}
+
+.card__link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 6px;
+}
+
+/* --- Phones: everything in one column, photos after the text --------------- */
+
+@media (max-width: 700px) {
+  .page-hero,
+  .chapter {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero__title {
+    font-size: calc((100vw - 32px) / 2.9);
+  }
+
+  .contact-cta .page-hero__title {
+    font-size: calc((100vw - 32px) / 4);
+  }
+
+  .page-hero__photo {
+    width: min(100%, 22rem);
+  }
+
+  .chapter--flip .chapter__photo {
+    order: 0;
+  }
+
+  .timeline__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 
@@ -1295,7 +1728,8 @@ em {
 }
 
 .site-footer a:hover,
-.site-footer a:focus-visible {
+.site-footer a:focus-visible,
+.site-footer a[aria-current="page"] {
   outline: none;
   text-decoration: underline;
   text-decoration-thickness: 2px;
@@ -1364,7 +1798,8 @@ em {
   .services__item span,
   .logos__title,
   .logos__wordmark,
-  .contact__title {
+  .contact__title,
+  .page-hero__title span {
     line-height: 0.75;
   }
 }
@@ -1433,6 +1868,11 @@ em {
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Media cards: the image zooms a touch on hover. */
+  .card__link:hover .card__image {
+    scale: 1.03;
   }
 
   /* Contact dropdown: the list drops in. */

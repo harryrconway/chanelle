@@ -8,8 +8,8 @@
        Narrow connect-src/form-action to the form service once one is chosen. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https:; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'; frame-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Chanelle Morris · Motivational speaker</title>
-  <meta name="description" content="Chanelle Morris is a motivational speaker, event host and content creator helping audiences replace fear with belief.">
+  <title>What I do · Chanelle Morris</title>
+  <meta name="description" content="Motivational speaking, event hosting and MC, the She’s Social community and content creation with Chanelle Morris.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,12 +18,12 @@
 
   <script src="main.js" defer></script>
 </head>
-<body>
+<body class="page page--what-i-do">
   <header class="site-header">
     <nav class="site-nav" aria-label="Main">
-      <a href="index.html" aria-current="page">Home</a>
+      <a href="index.html">Home</a>
       <a class="site-nav__link" href="about.html">About</a>
-      <a class="site-nav__link" href="what-i-do.html">What I do</a>
+      <a class="site-nav__link" href="what-i-do.html" aria-current="page">What I do</a>
       <a class="site-nav__link" href="media.html">Media</a>
       <a class="site-nav__link" href="contact.html">Contact</a>
       <button class="site-nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu">
@@ -34,9 +34,9 @@
 
   <div class="menu" id="menu" inert>
     <nav class="menu__nav" aria-label="Menu">
-      <a class="menu__link" href="index.html" aria-current="page"><span>Home</span></a>
+      <a class="menu__link" href="index.html"><span>Home</span></a>
       <a class="menu__link" href="about.html"><span>About</span></a>
-      <a class="menu__link" href="what-i-do.html"><span>What I do</span></a>
+      <a class="menu__link" href="what-i-do.html" aria-current="page"><span>What I do</span></a>
       <a class="menu__link" href="media.html"><span>Media</span></a>
       <a class="menu__link" href="contact.html"><span>Contact</span></a>
     </nav>
@@ -55,116 +55,83 @@
   </div>
 
   <main>
-    <section class="hero">
-      <!-- Her name, split either side of the photo. The heading carries the full
-           name for screen readers and search; the two big words are visual. -->
-      <div class="hero__stage">
-        <h1 class="visually-hidden">Chanelle Morris</h1>
-        <p class="hero__first" aria-hidden="true">Chanelle</p>
-        <figure class="hero__photo">
-          <img src="images/DSC00005-web.jpg" width="1200" height="1800"
-               alt="Chanelle smiling in a pink dress on coastal rocks" fetchpriority="high">
-        </figure>
-        <p class="hero__last" aria-hidden="true">Morris</p>
-      </div>
-
-      <div class="hero__band">
-        <blockquote class="hero__quote">
-          <p>“It was never my disability holding me back. It was my <em>mindset</em> about my disability that did.”</p>
-          <footer class="hero__signature">Chanelle</footer>
-        </blockquote>
-      </div>
-    </section>
-
-    <section class="about" aria-labelledby="about-title">
-      <p class="about__label">About me</p>
-
-      <div class="about__stat">
-        <p class="about__stat-number">30%</p>
-        <p class="about__stat-caption">The vision I was born with</p>
-      </div>
-
-      <div class="about__content">
-        <h2 class="about__title" id="about-title">I know what it’s like to be <em>underestimated.</em></h2>
-        <p>Born with 30% vision and legally blind in one eye, I grew up hearing what I couldn’t do. I believed every word, until I was housebound and at rock bottom.</p>
-        <p>So I challenged those beliefs, and found out what I was <em>really</em> capable of. Now I help audiences across Australia replace fear with belief.</p>
-        <a class="button" href="about.html">Read my story</a>
-      </div>
-
-      <figure class="about__photo">
-        <img src="images/photos/portrait-laughing-1024.jpg" srcset="images/photos/portrait-laughing-640.jpg 640w, images/photos/portrait-laughing-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 30vw" width="1024" height="1536" alt="Chanelle laughing on the rocks in a pink dress" loading="lazy" decoding="async">
-      </figure>
-
-      <ul class="about__roles">
-        <li>Motivational speaker</li>
-        <li>Event host</li>
-        <li>Content creator</li>
-        <li>Founder, She’s Social</li>
-      </ul>
-    </section>
-
-    <section class="services" aria-labelledby="services-title">
-      <div class="services__detail">
-        <h2 class="services__title" id="services-title">What I do</h2>
-
-        <div class="services__panels">
-          <div class="services__panel is-active" id="service-intro">
-            <p class="services__text">I help audiences, brands, and communities connect with the power of belief, resilience, and <em>possibility.</em></p>
-          </div>
-          <div class="services__panel" id="service-speaking">
-            <p class="services__number">01</p>
-            <p class="services__text">Talks on confidence, resilience and mindset, built on my own journey with low vision. Real stories and practical tools that help your audience replace fear with belief.</p>
-          </div>
-          <div class="services__panel" id="service-hosting">
-            <p class="services__number">02</p>
-            <p class="services__text">I bring energy and conviction to the stage, keeping your event flowing and your audience with you from the first welcome to the final word.</p>
-          </div>
-          <div class="services__panel" id="service-community">
-            <p class="services__number">03</p>
-            <p class="services__text">The women’s community I founded on the Gold Coast, bringing women together through genuine connection, fun events and uplifting friendships.</p>
-          </div>
-          <div class="services__panel" id="service-content">
-            <p class="services__number">04</p>
-            <p class="services__text">Honest, everyday stories about low vision, confidence and mindset, for my community and the brands that want to reach them.</p>
-          </div>
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="page-hero__text">
+        <p class="page-hero__label">What I do</p>
+        <h1 class="page-hero__title" id="page-title"><span>What I do</span></h1>
+        <div class="prose page-hero__intro">
+          <p>I help audiences, brands, and communities connect with the power of belief, resilience, and <em>possibility.</em></p>
         </div>
-
-        <a class="button services__more" href="what-i-do.html">More about what I do</a>
+        <div class="page-hero__buttons">
+        <a class="button" href="contact.html?enquiry=speaking">Book Chanelle to speak</a>
+        </div>
       </div>
-
-      <ul class="services__list">
-        <li><button class="services__item" type="button" aria-describedby="service-speaking"><span>Motivational speaking</span></button></li>
-        <li><button class="services__item" type="button" aria-describedby="service-hosting"><span>Event hosting / MC</span></button></li>
-        <li><button class="services__item" type="button" aria-describedby="service-community"><span>She’s Social community</span></button></li>
-        <li><button class="services__item" type="button" aria-describedby="service-content"><span>Content creation</span></button></li>
-      </ul>
+      <figure class="page-hero__photo">
+        <img src="images/photos/speaking-flowers-1024.jpg" srcset="images/photos/speaking-flowers-640.jpg 640w, images/photos/speaking-flowers-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle speaking into a microphone, with orange flowers in the foreground" decoding="async">
+      </figure>
     </section>
 
-    <section class="media" aria-labelledby="media-title">
-      <h2 class="media__heading" id="media-title">Media</h2>
+    <section class="chapter">
+      <div class="chapter__text">
+        <p class="chapter__label">01 · Motivational speaking</p>
+        <h2 class="chapter__title">Replace fear with belief</h2>
+        <div class="prose">
+          <p>Talks on confidence, resilience and mindset, built on my own journey with low vision. Real stories and practical tools that help your audience replace fear with belief and step into their full potential.</p>
+          <p>I speak to schools and youth leadership programs, community groups, disability and care organisations, and workplaces.</p>
+        </div>
+        <ul class="tags" aria-label="Speaking topics">
+          <li>Living with disability</li>
+          <li>Inclusion and belonging</li>
+          <li>Resilience and mindset</li>
+          <li>Confidence building</li>
+          <li>Starting a business with disability</li>
+        </ul>
+      </div>
+      <figure class="chapter__photo">
+        <img src="images/photos/speaking-mic-1024.jpg" srcset="images/photos/speaking-mic-640.jpg 640w, images/photos/speaking-mic-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle speaking into a microphone with her notebook open, in front of dark rocks" loading="lazy" decoding="async">
+      </figure>
+    </section>
 
-      <ul class="media__list">
-        <li class="media__item">
-          <p class="media__type">Video · 2 min</p>
-          <h3 class="media__outlet">Spoony</h3>
-          <p class="media__title">Meet our new Spoony ambassador</p>
-          <p class="media__links"><a href="https://www.youtube.com/watch?v=QLoELsAYJAw" target="_blank" rel="noopener">Watch</a></p>
-        </li>
-        <li class="media__item">
-          <p class="media__type">Podcast · 40 min</p>
-          <h3 class="media__outlet">Spoony · Episode 11</h3>
-          <p class="media__title">Navigating life with 30% vision</p>
-          <p class="media__links"><a href="https://www.youtube.com/watch?v=zX71jr0fkV8" target="_blank" rel="noopener">Watch</a></p>
-        </li>
-        <li class="media__item">
-          <p class="media__type">Podcast · 44 min</p>
-          <h3 class="media__outlet">Navigating Disability</h3>
-          <p class="media__title">The reality of invisible disability: Chanelle’s journey to self-love</p>
-          <p class="media__links"><a href="https://www.youtube.com/watch?v=YmX7a8defS8" target="_blank" rel="noopener">Watch</a></p>
-        </li>
-      </ul>
+    <section class="chapter chapter--flip chapter--colour">
+      <div class="chapter__text">
+        <p class="chapter__label">02 · Event hosting / MC</p>
+        <h2 class="chapter__title">Energy from the first welcome</h2>
+        <div class="prose">
+          <p>I bring energy and conviction to the stage, keeping your event flowing and your audience with you from the first welcome to the final word.</p>
+        </div>
+      </div>
+      <figure class="chapter__photo">
+        <img src="images/photos/mic-and-notebook-1024.jpg" srcset="images/photos/mic-and-notebook-640.jpg 640w, images/photos/mic-and-notebook-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="A microphone resting on a leather notebook beside a bunch of orange roses" loading="lazy" decoding="async">
+      </figure>
+    </section>
 
-      <a class="button media__more" href="media.html">See all media</a>
+    <section class="chapter">
+      <div class="chapter__text">
+        <p class="chapter__label">03 · She’s Social community</p>
+        <h2 class="chapter__title">Connection, authenticity and fun</h2>
+        <div class="prose">
+          <p>She’s Social is the women’s community I founded on the Gold Coast, bringing women together through genuine connection, fun events and uplifting friendships.</p>
+          <p>Weekly walks every Sunday at 7am and Wednesday at 5pm (QLD time) at Alia Cafe in Coolangatta, plus social nights and monthly events.</p>
+        </div>
+        <a class="button" href="https://www.instagram.com/shessocial_/" target="_blank" rel="noopener">Follow @shessocial_</a>
+      </div>
+      <figure class="chapter__photo">
+        <img src="images/photos/beach-walk-1024.jpg" srcset="images/photos/beach-walk-640.jpg 640w, images/photos/beach-walk-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle laughing as she walks along the beach in a pink dress" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <section class="chapter chapter--flip chapter--colour">
+      <div class="chapter__text">
+        <p class="chapter__label">04 · Content creation</p>
+        <h2 class="chapter__title">Honest, everyday stories</h2>
+        <div class="prose">
+          <p>Honest, everyday stories about low vision, confidence and mindset, for my community and the brands that want to reach them. I’ve partnered with brands including TikTok, Petbarn, My Muscle Chef and Motel Rocks.</p>
+        </div>
+        <a class="button" href="contact.html?enquiry=brand">Talk about a partnership</a>
+      </div>
+      <figure class="chapter__photo">
+        <img src="images/photos/cheek-hand-1024.jpg" srcset="images/photos/cheek-hand-640.jpg 640w, images/photos/cheek-hand-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle smiling, resting her cheek on her hands" loading="lazy" decoding="async">
+      </figure>
     </section>
 
     <section class="logos" aria-labelledby="logos-title">
@@ -189,21 +156,13 @@
       </ul>
     </section>
 
-    <section class="page-hero contact-cta" aria-labelledby="contact-cta-title">
-      <div class="page-hero__text">
-        <p class="page-hero__label">Work with me</p>
-        <h2 class="page-hero__title" id="contact-cta-title"><span>Get in touch</span></h2>
-        <div class="prose page-hero__intro">
-          <p>Planning an event? Enquire for speaker rates, or book a consultation call to talk through your event.</p>
-        </div>
-        <div class="page-hero__buttons">
-          <a class="button" href="contact.html">Send an enquiry</a>
-          <a class="button button--outline" href="contact.html?enquiry=consultation">Book a consultation call</a>
-        </div>
+    <section class="cta-band">
+      <h2 class="cta-band__title">Let’s make your event unforgettable</h2>
+      <p class="cta-band__text">Enquire for speaker rates, or book a call to talk through your event.</p>
+      <div class="cta-band__buttons">
+        <a class="button button--pink" href="contact.html?enquiry=speaking">Enquire now</a>
+        <a class="button button--outline" href="contact.html?enquiry=consultation">Book a consultation call</a>
       </div>
-      <figure class="page-hero__photo">
-        <img src="images/photos/cheek-hand-1024.jpg" srcset="images/photos/cheek-hand-640.jpg 640w, images/photos/cheek-hand-1024.jpg 1024w" sizes="(max-width: 700px) 100vw, 40vw" width="1024" height="1536" alt="Chanelle smiling, resting her cheek on her hands" loading="lazy" decoding="async">
-      </figure>
     </section>
   </main>
 
@@ -221,9 +180,9 @@
       <nav aria-label="Footer">
         <h2 class="site-footer__heading">Explore</h2>
         <ul>
-          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="what-i-do.html">What I do</a></li>
+          <li><a href="what-i-do.html" aria-current="page">What I do</a></li>
           <li><a href="media.html">Media</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>

@@ -1,32 +1,42 @@
-// Hero photo rises as you scroll, until the quote's centre reaches the middle
-// of the screen, then stays put.
+// One script for every page. Each feature starts only if its part of the page
+// is there.
 
-const PHOTO_RISE = 0.3;   // how far it rises, as a fraction of the photo's height
+initPhotoRise();
+initServices();
+initMenu();
+initContactForm();
 
-const photo = document.querySelector('.hero__photo');
-const quote = document.querySelector('.hero__quote');
-let riseEnd = 1;          // scroll position where the rise finishes
-let riseDistance = 0;
 
-// Position on the page, ignoring transforms (the quote animates in on load).
-function pageTop(el) {
-  let top = 0;
-  for (; el; el = el.offsetParent) top += el.offsetTop;
-  return top;
-}
+// Home: the hero photo rises as you scroll, until the quote's centre reaches
+// the middle of the screen, then stays put.
+function initPhotoRise() {
+  const photo = document.querySelector('.hero__photo');
+  const quote = document.querySelector('.hero__quote');
+  if (!photo || !quote || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-function measureRise() {
-  riseEnd = Math.max(1, pageTop(quote) + quote.offsetHeight / 2 - innerHeight / 2);
-  riseDistance = photo.offsetHeight * PHOTO_RISE;
-  updateRise();
-}
+  const PHOTO_RISE = 0.3;   // how far it rises, as a fraction of the photo's height
 
-function updateRise() {
-  const progress = Math.min(scrollY / riseEnd, 1);
-  photo.style.setProperty('--photo-rise', `${(-progress * riseDistance).toFixed(1)}px`);
-}
+  let riseEnd = 1;          // scroll position where the rise finishes
+  let riseDistance = 0;
 
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  // Position on the page, ignoring transforms (the quote animates in on load).
+  function pageTop(el) {
+    let top = 0;
+    for (; el; el = el.offsetParent) top += el.offsetTop;
+    return top;
+  }
+
+  function measureRise() {
+    riseEnd = Math.max(1, pageTop(quote) + quote.offsetHeight / 2 - innerHeight / 2);
+    riseDistance = photo.offsetHeight * PHOTO_RISE;
+    updateRise();
+  }
+
+  function updateRise() {
+    const progress = Math.min(scrollY / riseEnd, 1);
+    photo.style.setProperty('--photo-rise', `${(-progress * riseDistance).toFixed(1)}px`);
+  }
+
   let riseFrame = 0;
   addEventListener('scroll', () => {
     cancelAnimationFrame(riseFrame);
@@ -39,212 +49,221 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 }
 
 
-// What I do: hovering, focusing or tapping a service fades its description in
-// on the right. Leaving the section with the mouse brings the intro back.
+// Home, What I do: hovering, focusing or tapping a service fades its
+// description in. Leaving the section with the mouse brings the intro back.
+function initServices() {
+  const services = document.querySelector('.services');
+  if (!services) return;
 
-const services = document.querySelector('.services');
-const serviceItems = services.querySelectorAll('.services__item');
-const servicePanels = services.querySelectorAll('.services__panel');
+  const serviceItems = services.querySelectorAll('.services__item');
+  const servicePanels = services.querySelectorAll('.services__panel');
 
-function showService(panelId) {
-  servicePanels.forEach((panel) => panel.classList.toggle('is-active', panel.id === panelId));
+  function showService(panelId) {
+    servicePanels.forEach((panel) => panel.classList.toggle('is-active', panel.id === panelId));
+    serviceItems.forEach((item) => {
+      item.classList.toggle('is-active', item.getAttribute('aria-describedby') === panelId);
+    });
+  }
+
   serviceItems.forEach((item) => {
-    item.classList.toggle('is-active', item.getAttribute('aria-describedby') === panelId);
+    const show = () => showService(item.getAttribute('aria-describedby'));
+    item.addEventListener('pointerenter', show);
+    item.addEventListener('focus', show);
+    item.addEventListener('click', show);
+  });
+
+  services.addEventListener('pointerleave', (event) => {
+    if (event.pointerType === 'mouse') showService('service-intro');
   });
 }
 
-serviceItems.forEach((item) => {
-  const show = () => showService(item.getAttribute('aria-describedby'));
-  item.addEventListener('pointerenter', show);
-  item.addEventListener('focus', show);
-  item.addEventListener('click', show);
-});
 
-services.addEventListener('pointerleave', (event) => {
-  if (event.pointerType === 'mouse') showService('service-intro');
-});
+// Every page, phones: the hamburger drops the menu bands down from the top.
+function initMenu() {
+  const menuToggle = document.querySelector('.site-nav__toggle');
+  const menu = document.getElementById('menu');
 
+  function setMenu(open) {
+    menu.classList.toggle('is-open', open);
+    menu.inert = !open;
+    document.documentElement.classList.toggle('is-menu-open', open);
+    menuToggle.setAttribute('aria-expanded', open);
+  }
 
-// Mobile menu: the hamburger drops the pink bands down from the top.
+  menuToggle.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
 
-const menuToggle = document.querySelector('.site-nav__toggle');
-const menu = document.getElementById('menu');
+  // Close after picking a link, on Escape, or if the screen widens past phone size.
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenu(false);
+  });
 
-function setMenu(open) {
-  menu.classList.toggle('is-open', open);
-  menu.inert = !open;
-  document.documentElement.classList.toggle('is-menu-open', open);
-  menuToggle.setAttribute('aria-expanded', open);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu.classList.contains('is-open')) {
+      setMenu(false);
+      menuToggle.focus();
+    }
+  });
+
+  matchMedia('(min-width: 701px)').addEventListener('change', (event) => {
+    if (event.matches) setMenu(false);
+  });
 }
 
-menuToggle.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
 
-// Close after picking a link, on Escape, or if the screen widens past phone size.
-menu.addEventListener('click', (event) => {
-  if (event.target.closest('a')) setMenu(false);
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && menu.classList.contains('is-open')) {
-    setMenu(false);
-    menuToggle.focus();
-  }
-});
-
-matchMedia('(min-width: 701px)').addEventListener('change', (event) => {
-  if (event.matches) setMenu(false);
-});
-
-
-// Contact form: checks the fields, filters out spam and sends the enquiry.
+// Contact page: the form checks the fields, filters out spam and sends the enquiry.
 // These browser-side checks stop honest mistakes and simple bots; whatever
 // receives the form must check again, because anyone can bypass a browser.
+function initContactForm() {
+  const contactForm = document.getElementById('contact-form');
+  if (!contactForm) return;
 
-const contactForm = document.getElementById('contact-form');
-const contactFields = contactForm.elements;
-const contactStatus = contactForm.querySelector('.contact__status');
-const contactSubmit = contactForm.querySelector('.contact__submit');
-const messageCount = document.getElementById('contact-message-count');
+  const contactFields = contactForm.elements;
+  const contactStatus = contactForm.querySelector('.contact__status');
+  const contactSubmit = contactForm.querySelector('.contact__submit');
+  const messageCount = document.getElementById('contact-message-count');
 
-const MIN_FILL_MS = 3000;          // people take longer than this to fill the form in
-const COOLDOWN_MS = 60 * 1000;     // one enquiry a minute from the same browser
-const SEND_TIMEOUT_MS = 15000;
-const COOLDOWN_KEY = 'contact-last-sent';
-const formShownAt = Date.now();
+  const MIN_FILL_MS = 3000;          // people take longer than this to fill the form in
+  const COOLDOWN_MS = 60 * 1000;     // one enquiry a minute from the same browser
+  const SEND_TIMEOUT_MS = 15000;
+  const COOLDOWN_KEY = 'contact-last-sent';
+  const formShownAt = Date.now();
 
-// Invisible control characters (other than line breaks) have no place here.
-const CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
-const clean = (value) => value.replace(CONTROL_CHARS, '').trim();
+  // Invisible control characters (other than line breaks) have no place here.
+  const CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
+  const clean = (value) => value.replace(CONTROL_CHARS, '').trim();
 
-const checks = {
-  name: (value) => (value.length >= 2 ? '' : 'Please enter your name.'),
-  email: (value) => (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value) ? '' : 'Please enter a valid email address.'),
-  message: (value) => (value.length >= 10 ? '' : 'Please write a message of at least 10 characters.'),
-};
-
-// Messages are only ever set with textContent, never as HTML.
-function showError(field, message) {
-  document.getElementById(`${field.id}-error`).textContent = message;
-  field.setAttribute('aria-invalid', message ? 'true' : 'false');
-}
-
-function updateCount() {
-  const message = contactFields['message'];
-  messageCount.textContent = `${message.value.length} / ${message.maxLength}`;
-}
-
-function lastSentAt() {
-  try { return Number(localStorage.getItem(COOLDOWN_KEY)) || 0; } catch { return 0; }
-}
-
-function rememberSent() {
-  try { localStorage.setItem(COOLDOWN_KEY, String(Date.now())); } catch { /* private mode */ }
-}
-
-async function sendToService(endpoint, data) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), SEND_TIMEOUT_MS);
-  try {
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(data),
-      credentials: 'omit',   // never send cookies along with the enquiry
-      signal: controller.signal,
-    });
-    if (!response.ok) throw new Error(`Form service replied ${response.status}`);
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-// No form service yet: hand the message to the visitor's email app instead.
-function openEmailApp(to, data) {
-  const subject = `${data.enquiry} enquiry from ${data.name}`;
-  const body = `${data.message}\n\n${data.name}\n${data.email}`;
-  location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-function resetForm() {
-  contactForm.reset();
-  updateCount();
-}
-
-contactForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  contactStatus.textContent = '';
-
-  const data = {
-    name: clean(contactFields['name'].value),
-    email: clean(contactFields['email'].value),
-    enquiry: contactFields['enquiry'].value,
-    message: clean(contactFields['message'].value),
+  const checks = {
+    name: (value) => (value.length >= 2 ? '' : 'Please enter your name.'),
+    email: (value) => (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value) ? '' : 'Please enter a valid email address.'),
+    message: (value) => (value.length >= 10 ? '' : 'Please write a message of at least 10 characters.'),
   };
 
-  // Likely a bot (trap field filled in, or submitted instantly): look like it
-  // worked, but send nothing.
-  if (contactFields['website'].value || Date.now() - formShownAt < MIN_FILL_MS) {
-    resetForm();
-    contactStatus.textContent = 'Thanks! Your message has been sent.';
-    return;
+  // Messages are only ever set with textContent, never as HTML.
+  function showError(field, message) {
+    document.getElementById(`${field.id}-error`).textContent = message;
+    field.setAttribute('aria-invalid', message ? 'true' : 'false');
   }
 
-  let firstInvalid = null;
-  for (const [name, check] of Object.entries(checks)) {
-    const problem = check(data[name]);
-    showError(contactFields[name], problem);
-    if (problem && !firstInvalid) firstInvalid = contactFields[name];
-  }
-  if (firstInvalid) {
-    firstInvalid.focus();
-    return;
+  function updateCount() {
+    const message = contactFields['message'];
+    messageCount.textContent = `${message.value.length} / ${message.maxLength}`;
   }
 
-  if (Date.now() - lastSentAt() < COOLDOWN_MS) {
-    contactStatus.textContent = 'Thanks, your last message is on its way. Please wait a minute before sending another.';
-    return;
+  function lastSentAt() {
+    try { return Number(localStorage.getItem(COOLDOWN_KEY)) || 0; } catch { return 0; }
   }
 
-  // Only accept one of the listed enquiry types.
-  const options = [...contactFields['enquiry'].options].map((option) => option.value);
-  if (!options.includes(data.enquiry)) data.enquiry = 'Something else';
+  function rememberSent() {
+    try { localStorage.setItem(COOLDOWN_KEY, String(Date.now())); } catch { /* private mode */ }
+  }
 
-  const endpoint = contactForm.dataset.endpoint;
-  contactSubmit.disabled = true;
-  contactStatus.textContent = 'Sending…';
-  try {
-    if (endpoint.startsWith('https://')) {
-      await sendToService(endpoint, data);
-      contactStatus.textContent = 'Thanks! Your message has been sent. Chanelle will be in touch soon.';
-    } else {
-      openEmailApp(contactForm.dataset.email, data);
-      contactStatus.textContent = 'Your email app should now open with your message ready to send.';
+  async function sendToService(endpoint, data) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), SEND_TIMEOUT_MS);
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
+        credentials: 'omit',   // never send cookies along with the enquiry
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error(`Form service replied ${response.status}`);
+    } finally {
+      clearTimeout(timer);
     }
-    rememberSent();
-    resetForm();
-  } catch {
-    contactStatus.textContent = `Sorry, something went wrong. Please try again, or email ${contactForm.dataset.email}.`;
-  } finally {
-    contactSubmit.disabled = false;
   }
-});
 
-// Live character count, and clear a field's error as soon as it's fixed.
-contactForm.addEventListener('input', (event) => {
-  const field = event.target;
-  if (field.name === 'message') updateCount();
-  if (checks[field.name] && field.getAttribute('aria-invalid') === 'true') {
-    showError(field, checks[field.name](clean(field.value)));
+  // No form service yet: hand the message to the visitor's email app instead.
+  function openEmailApp(to, data) {
+    const subject = `${data.enquiry} enquiry from ${data.name}`;
+    const body = `${data.message}\n\n${data.name}\n${data.email}`;
+    location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
-});
 
-// "Book a consultation call" buttons pick that enquiry type on the way down.
-document.querySelectorAll('a[data-enquiry]').forEach((link) => {
-  link.addEventListener('click', () => {
-    contactFields['enquiry'].value = link.dataset.enquiry;
-    contactFields['enquiry'].dispatchEvent(new Event('change'));
+  function resetForm() {
+    contactForm.reset();
+    updateCount();
+  }
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    contactStatus.textContent = '';
+
+    const data = {
+      name: clean(contactFields['name'].value),
+      email: clean(contactFields['email'].value),
+      enquiry: contactFields['enquiry'].value,
+      message: clean(contactFields['message'].value),
+    };
+
+    // Likely a bot (trap field filled in, or submitted instantly): look like it
+    // worked, but send nothing.
+    if (contactFields['website'].value || Date.now() - formShownAt < MIN_FILL_MS) {
+      resetForm();
+      contactStatus.textContent = 'Thanks! Your message has been sent.';
+      return;
+    }
+
+    let firstInvalid = null;
+    for (const [name, check] of Object.entries(checks)) {
+      const problem = check(data[name]);
+      showError(contactFields[name], problem);
+      if (problem && !firstInvalid) firstInvalid = contactFields[name];
+    }
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return;
+    }
+
+    if (Date.now() - lastSentAt() < COOLDOWN_MS) {
+      contactStatus.textContent = 'Thanks, your last message is on its way. Please wait a minute before sending another.';
+      return;
+    }
+
+    // Only accept one of the listed enquiry types.
+    const options = [...contactFields['enquiry'].options].map((option) => option.value);
+    if (!options.includes(data.enquiry)) data.enquiry = 'Something else';
+
+    const endpoint = contactForm.dataset.endpoint;
+    contactSubmit.disabled = true;
+    contactStatus.textContent = 'Sending…';
+    try {
+      if (endpoint.startsWith('https://')) {
+        await sendToService(endpoint, data);
+        contactStatus.textContent = 'Thanks! Your message has been sent. Chanelle will be in touch soon.';
+      } else {
+        openEmailApp(contactForm.dataset.email, data);
+        contactStatus.textContent = 'Your email app should now open with your message ready to send.';
+      }
+      rememberSent();
+      resetForm();
+    } catch {
+      contactStatus.textContent = `Sorry, something went wrong. Please try again, or email ${contactForm.dataset.email}.`;
+    } finally {
+      contactSubmit.disabled = false;
+    }
   });
-});
+
+  // Live character count, and clear a field's error as soon as it's fixed.
+  contactForm.addEventListener('input', (event) => {
+    const field = event.target;
+    if (field.name === 'message') updateCount();
+    if (checks[field.name] && field.getAttribute('aria-invalid') === 'true') {
+      showError(field, checks[field.name](clean(field.value)));
+    }
+  });
+
+  enhanceSelect(contactFields['enquiry']);
+
+  // Links like contact.html?enquiry=consultation pre-select the enquiry type.
+  const ENQUIRY_LINKS = { speaking: 'Speaking', hosting: 'Event hosting / MC', consultation: 'Consultation call', brand: 'Brand partnership' };
+  const fromLink = ENQUIRY_LINKS[new URLSearchParams(location.search).get('enquiry')];
+  if (fromLink) {
+    contactFields['enquiry'].value = fromLink;
+    contactFields['enquiry'].dispatchEvent(new Event('change'));
+  }
+}
 
 
 // Custom dropdown: replaces the browser's own <select> list (which can't be
@@ -387,5 +406,3 @@ function enhanceSelect(select) {
   select.hidden = true;   // still part of the form, just not shown
   sync();
 }
-
-enhanceSelect(contactFields['enquiry']);
