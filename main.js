@@ -431,3 +431,55 @@ function enhanceSelect(select) {
 }
 
 enhanceSelect(contactFields['enquiry']);
+
+
+// She's Social heart: anyone can send one heart (once per browser) and
+// everyone sees the shared total. The total is kept by a counter service at
+// the addresses in the HTML (data-get / data-hit), not by the website host.
+
+const heart = document.querySelector('.heart');
+const heartButton = heart.querySelector('.heart__button');
+const heartNumber = heart.querySelector('.heart__number');
+const HEARTED_KEY = 'shes-social-hearted';
+
+function hasHearted() {
+  try { return localStorage.getItem(HEARTED_KEY) === '1'; } catch { return false; }
+}
+
+function rememberHeart() {
+  try { localStorage.setItem(HEARTED_KEY, '1'); } catch { /* private mode */ }
+}
+
+function showHearts(value) {
+  heartNumber.textContent = value.toLocaleString('en-AU');
+}
+
+async function fetchHearts(url) {
+  const response = await fetch(url, { credentials: 'omit' });
+  if (response.status === 404) return 0;   // nobody has sent a heart yet
+  if (!response.ok) throw new Error(`Counter replied ${response.status}`);
+  const value = Number((await response.json()).value);
+  if (!Number.isInteger(value) || value < 0) throw new Error('Unexpected count');
+  return value;
+}
+
+heartButton.setAttribute('aria-pressed', String(hasHearted()));
+fetchHearts(heart.dataset.get).then(showHearts).catch(() => { /* keep the dash */ });
+
+heartButton.addEventListener('click', async () => {
+  // Replay the pop on every tap.
+  heartButton.classList.remove('is-popping');
+  void heartButton.offsetWidth;
+  heartButton.classList.add('is-popping');
+
+  if (hasHearted()) return;   // one heart per visitor
+  rememberHeart();
+  heartButton.setAttribute('aria-pressed', 'true');
+
+  // Show it straight away, then settle on the counter's real total.
+  const shown = Number(heartNumber.textContent.replace(/\D/g, '')) || 0;
+  showHearts(shown + 1);
+  try {
+    showHearts(await fetchHearts(heart.dataset.hit));
+  } catch { /* keep the number already shown */ }
+});
