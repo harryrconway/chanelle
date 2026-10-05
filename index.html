@@ -1,162 +1,328 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Security: only load code, styles and fonts from this site and Google Fonts;
+       no plugins, no framing tricks, forms only post to this site, email or HTTPS.
+       Narrow connect-src/form-action to the form service once one is chosen. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https:; form-action 'self' https: mailto:; base-uri 'self'; object-src 'none'; frame-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Chanelle</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="main.js" defer></script>
 </head>
-<body class="content-visible">
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main">
+      <a href="#">CM</a>
+      <a class="site-nav__link" href="#about">About</a>
+      <a class="site-nav__link" href="#what-i-do">What I do</a>
+      <a class="site-nav__link" href="#contact">Contact</a>
+      <button class="site-nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
 
-  <main class="page-content">
+  <div class="menu" id="menu" inert>
+    <nav class="menu__nav" aria-label="Menu">
+      <a class="menu__link" href="#"><span>Home</span></a>
+      <a class="menu__link" href="#about"><span>About</span></a>
+      <a class="menu__link" href="#what-i-do"><span>What I do</span></a>
+      <a class="menu__link" href="#contact"><span>Contact</span></a>
+    </nav>
 
-    <section class="hero reveal-section">
-      <p class="hero-eyebrow">Motivational Speaker &amp; MC · Gold Coast</p>
-      <h1 class="hero-name">Chanelle Morris</h1>
-      <p class="hero-tagline">Turning honest, personal stories into moments that move a room — on stage, at your next event, or within the community she's built.</p>
-      <button type="button" class="btn-contact hero-cta js-open-contact">Get in Touch</button>
-    </section>
-
-    <section class="about reveal-section">
-      <div class="placeholder-photo about-photo"></div>
-      <div class="about-content">
-        <p class="about-label">About Chanelle</p>
-        <p class="about-text scroll-highlight">Chanelle is a Gold Coast motivational speaker and event host who's built a career on turning honest, personal stories into moments that move a room. Living with low vision herself, she knows what it means to feel unseen — which is exactly why she founded She's Social, a community bringing women together through genuine connection.</p>
-        <div class="about-stat">
-          <span class="stat-number">10+</span>
-          <span class="stat-label">years speaking, hosting, and building community</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="services-scroll">
-      <div class="services-pin">
-        <div class="service-band bg-pink">
-          <div class="service-heading">
-            <h3>Motivational Speaking</h3>
-            <span class="service-number">(01)</span>
-          </div>
-          <div class="placeholder-photo service-photo"></div>
-          <div class="service-text">
-            <p>Inspiring, relatable talks that leave audiences ready to take action and challenge what they thought was possible.</p>
-            <div class="tag-row">
-              <span class="tag">Keynote Talks</span>
-              <span class="tag">Storytelling</span>
-              <span class="tag">Resilience</span>
-              <span class="tag">Audience Connection</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-band bg-teal">
-          <div class="service-heading">
-            <h3>Event Hosting / MC</h3>
-            <span class="service-number">(02)</span>
-          </div>
-          <div class="placeholder-photo service-photo"></div>
-          <div class="service-text">
-            <p>From weddings to corporate events, I bring energy, warmth, and professionalism to every stage.</p>
-            <div class="tag-row">
-              <span class="tag">Weddings</span>
-              <span class="tag">Corporate Events</span>
-              <span class="tag">Live Hosting</span>
-              <span class="tag">Crowd Energy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-band bg-green">
-          <div class="service-heading">
-            <h3>She's Social Community</h3>
-            <span class="service-number">(03)</span>
-          </div>
-          <div class="placeholder-photo service-photo"></div>
-          <div class="service-text">
-            <p>A women's social group on the Gold Coast where connection, fun, and empowerment meet.</p>
-            <div class="tag-row">
-              <span class="tag">Women's Community</span>
-              <span class="tag">Gold Coast Meetups</span>
-              <span class="tag">Connection</span>
-              <span class="tag">Empowerment</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-band bg-yellow">
-          <div class="service-heading">
-            <h3>Content Creation</h3>
-            <span class="service-number">(04)</span>
-          </div>
-          <div class="placeholder-photo service-photo"></div>
-          <div class="service-text">
-            <p>Authentic, engaging content that tells stories, sparks conversations, and creates meaningful connections with your audience.</p>
-            <div class="tag-row">
-              <span class="tag">Authentic Storytelling</span>
-              <span class="tag">Social Content</span>
-              <span class="tag">Engagement</span>
-              <span class="tag">Brand Voice</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="quote-banner reveal-section">
-      <p>&ldquo;It was never my disability that held me back, it was my mindset about my disability that did&rdquo;</p>
-    </section>
-
-    <section class="cta-section reveal-section">
-      <h2>Let's work <em>together</em></h2>
-      <p>Have an event, a stage, or a story that needs telling? I'd love to hear about it.</p>
-      <button type="button" class="btn-contact js-open-contact">Contact Chanelle</button>
-    </section>
-
-    <footer class="site-footer reveal-section">
-      <div class="footer-top">
-        <span id="footer-location">Gold Coast, Australia</span>
-        <span id="footer-clock">--:--</span>
-      </div>
-
-      <div class="footer-bottom">
-        <span class="footer-copyright">©2026</span>
-
-        <nav class="social-links">
-          <a href="#" class="social-pill pill-1">Instagram</a>
-          <a href="#" class="social-pill pill-2">YouTube</a>
-          <a href="#" class="social-pill pill-4">TikTok</a>
-        </nav>
-      </div>
-    </footer>
-
-  </main>
-
-  <div class="contact-modal" id="contact-modal">
-    <div class="contact-panel">
-      <button type="button" class="contact-close" id="close-contact" aria-label="Close">×</button>
-      <h2>Get in <em>touch</em></h2>
-
-      <form class="contact-form">
-        <label class="field field-wide">
-          <span>Full name</span>
-          <input type="text" name="name" placeholder="Jane Doe">
-        </label>
-        <label class="field field-wide">
-          <span>Email</span>
-          <input type="email" name="email" placeholder="jane@email.com">
-        </label>
-        <label class="field field-wide">
-          <span>Message</span>
-          <textarea name="details" placeholder="Tell me about your event or enquiry"></textarea>
-        </label>
-
-        <button type="submit" class="btn-submit">Send it over</button>
-      </form>
+    <div class="menu__footer">
+      <a class="menu__email" href="mailto:hello@chanelle.au">hello@chanelle.au</a>
+      <a class="menu__cta" href="#contact" data-enquiry="Consultation call">Book a consultation call</a>
+      <ul class="menu__social" aria-label="Follow Chanelle">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">She’s Social</a></li>
+      </ul>
     </div>
   </div>
 
-  <script src="index.js" defer></script>
+  <main>
+    <section class="hero">
+      <h1 class="hero__name"><span class="hero__name-text">Chanelle</span></h1>
+
+      <figure class="hero__photo">
+        <img src="images/DSC00005-web.jpg" width="1200" height="1800"
+             alt="Chanelle smiling in a pink dress on coastal rocks" fetchpriority="high">
+      </figure>
+
+      <div class="hero__band">
+        <blockquote class="hero__quote">
+          <p>“Your <em>vision</em> may shape what you see, but your <em>mindset</em> determines what you believe is <em>possible.</em>”</p>
+          <footer>— Chanelle</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <p class="about__label">About me</p>
+
+      <div class="about__stat">
+        <p class="about__stat-number">30%</p>
+        <p class="about__stat-caption">The vision I was born with</p>
+      </div>
+
+      <div class="about__content">
+        <h2 class="about__title" id="about-title">I know what it’s like to be <em>underestimated.</em></h2>
+        <p>Born with 30% vision and legally blind in one eye, I grew up hearing what I couldn’t do. At 16 I was told I’d never drive. I believed every word, until I was housebound and at rock bottom.</p>
+        <p>So I challenged those beliefs. I took on a solo snow season in New Zealand, graduated with a Bachelor of Social Welfare and ran a half marathon. It was never my eye condition holding me back. It was my <em>mindset.</em></p>
+        <p>Now I help audiences across Australia replace fear with belief, and step into a mindset that says “watch me”.</p>
+        <a class="about__cta" href="#contact">Work with me</a>
+      </div>
+
+      <ul class="about__roles">
+        <li>Motivational speaker</li>
+        <li>Event host</li>
+        <li>Content creator</li>
+        <li>Founder, She’s Social</li>
+      </ul>
+    </section>
+
+    <section class="services" id="what-i-do" aria-labelledby="services-title">
+      <div class="services__detail">
+        <h2 class="services__title" id="services-title">What I do</h2>
+
+        <div class="services__panels">
+          <div class="services__panel is-active" id="service-intro">
+            <p class="services__text">I help audiences, brands, and communities connect with the power of belief, resilience, and <em>possibility.</em></p>
+          </div>
+          <div class="services__panel" id="service-speaking">
+            <p class="services__number">01</p>
+            <p class="services__text">Talks on confidence, resilience and mindset, built on my own journey with low vision. Real stories and practical tools that help your audience replace fear with belief.</p>
+          </div>
+          <div class="services__panel" id="service-hosting">
+            <p class="services__number">02</p>
+            <p class="services__text">I bring energy and conviction to the stage, keeping your event flowing and your audience with you from the first welcome to the final word.</p>
+          </div>
+          <div class="services__panel" id="service-community">
+            <p class="services__number">03</p>
+            <p class="services__text">The women’s community I founded on the Gold Coast, bringing women together through genuine connection, fun events and uplifting friendships.</p>
+          </div>
+          <div class="services__panel" id="service-content">
+            <p class="services__number">04</p>
+            <p class="services__text">Honest, everyday stories about low vision, confidence and mindset, for my community and the brands that want to reach them.</p>
+          </div>
+        </div>
+      </div>
+
+      <ul class="services__list">
+        <li><button class="services__item" type="button" aria-describedby="service-speaking"><span>Motivational speaking</span></button></li>
+        <li><button class="services__item" type="button" aria-describedby="service-hosting"><span>Event hosting / MC</span></button></li>
+        <li><button class="services__item" type="button" aria-describedby="service-community"><span>She’s Social community</span></button></li>
+        <li><button class="services__item" type="button" aria-describedby="service-content"><span>Content creation</span></button></li>
+      </ul>
+    </section>
+
+    <section class="media" aria-labelledby="media-title">
+      <h2 class="media__heading" id="media-title">Media</h2>
+
+      <ul class="media__list">
+        <!-- TODO: add the ABC interview's title and link when Chanelle sends them. -->
+        <li class="media__item">
+          <p class="media__type">Radio</p>
+          <h3 class="media__outlet">ABC Radio</h3>
+          <p class="media__title">Interview</p>
+        </li>
+        <!-- TODO: add a link to the Fresh Nights audio if there is one. -->
+        <li class="media__item">
+          <p class="media__type">Radio</p>
+          <h3 class="media__outlet">Super Radio Network</h3>
+          <p class="media__title">Fresh Nights: disability, dating and the “bare minimum” trend</p>
+        </li>
+        <li class="media__item">
+          <p class="media__type">Press</p>
+          <h3 class="media__outlet">The Courier-Mail</h3>
+          <p class="media__title">Qld TikTok queen’s rare medical condition</p>
+          <p class="media__links">
+            <a href="https://www.dropbox.com/scl/fi/390je1g8rqaqbbey42hg0/Qld-TikTok-queen-s-rare-medical-condition.pdf?rlkey=1tflzaeca5k77hegtk6wqcdyv&amp;st=ybiitzyc&amp;dl=0" target="_blank" rel="noopener">Online</a>
+            <a href="https://www.dropbox.com/scl/fi/0n9b55n8rlm1yjavocpgz/Chanelle-Morris-x-Courier-Mail-PRINT.png?rlkey=0xx7s13rbvpyld4g433g3aztr&amp;st=laweqejm&amp;dl=0" target="_blank" rel="noopener">Print</a>
+          </p>
+        </li>
+        <li class="media__item">
+          <p class="media__type">Podcast</p>
+          <h3 class="media__outlet">Spoony · Episode 11</h3>
+          <p class="media__title">Navigating life with 30% vision</p>
+          <p class="media__links"><a href="https://youtu.be/zX71jr0fkV8" target="_blank" rel="noopener">Watch</a></p>
+        </li>
+        <li class="media__item">
+          <p class="media__type">Podcast</p>
+          <h3 class="media__outlet">Navigating Disability</h3>
+          <p class="media__title">The reality of invisible disability: Chanelle’s journey to self-love</p>
+          <p class="media__links"><a href="https://youtu.be/YmX7a8defS8" target="_blank" rel="noopener">Watch</a></p>
+        </li>
+        <li class="media__item">
+          <p class="media__type">Podcast</p>
+          <h3 class="media__outlet">Chats From A Chair</h3>
+          <p class="media__title">Life with 30% vision</p>
+          <p class="media__links"><a href="https://youtu.be/S1gNTzDsEFc" target="_blank" rel="noopener">Watch</a></p>
+        </li>
+        <li class="media__item">
+          <p class="media__type">Podcast</p>
+          <h3 class="media__outlet">The CUSP Podcast · #28</h3>
+          <p class="media__title">Seeing beyond limits: Chanelle’s path to purpose and success</p>
+          <p class="media__links"><a href="https://youtu.be/awF90AjRHGo" target="_blank" rel="noopener">Watch</a></p>
+        </li>
+        <li class="media__item">
+          <p class="media__type">Keynote</p>
+          <h3 class="media__outlet">YouTube · Half Blind</h3>
+          <p class="media__title">Motivation &amp; overcoming negative beliefs</p>
+          <p class="media__links"><a href="https://www.youtube.com/watch?v=G9UPn_Iv_8U" target="_blank" rel="noopener">Watch</a></p>
+        </li>
+        <li class="media__item">
+          <p class="media__type">Video</p>
+          <h3 class="media__outlet">YouTube · Half Blind</h3>
+          <p class="media__title">My disability never held me back, my mindset about it did!</p>
+          <p class="media__links"><a href="https://www.youtube.com/watch?v=p5HOG5auIwg" target="_blank" rel="noopener">Watch</a></p>
+        </li>
+        <li class="media__item">
+          <p class="media__type">Video</p>
+          <h3 class="media__outlet">YouTube · Half Blind</h3>
+          <p class="media__title">Disability &amp; the NDIS (for participants and providers)</p>
+          <p class="media__links"><a href="https://www.youtube.com/watch?v=1B1BJWkIKDg" target="_blank" rel="noopener">Watch</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="logos" aria-labelledby="logos-title">
+      <h2 class="logos__title" id="logos-title">Brands I support</h2>
+
+      <ul class="logos__grid">
+        <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener"><img class="logos__logo" src="images/logos/tiktok.svg" width="1000" height="291" alt="TikTok" loading="lazy"></a></li>
+        <li><a href="https://www.petbarn.com.au/" target="_blank" rel="noopener"><img class="logos__logo logos__logo--xwide" src="images/logos/petbarn.svg" width="173" height="27" alt="Petbarn" loading="lazy"></a></li>
+        <li><a href="https://sed.visionaustralia.org/" target="_blank" rel="noopener"><img class="logos__logo" src="images/logos/seeing-eye-dogs.svg" width="177" height="65" alt="Seeing Eye Dogs" loading="lazy"></a></li>
+        <li><a href="https://www.13cabs.com.au/" target="_blank" rel="noopener"><img class="logos__logo logos__logo--wide" src="images/logos/13cabs.png" width="400" height="104" alt="13cabs" loading="lazy"></a></li>
+        <li><a href="https://www.visionaustralia.org/" target="_blank" rel="noopener"><img class="logos__logo" src="images/logos/vision-australia.svg" width="176" height="65" alt="Vision Australia" loading="lazy"></a></li>
+        <li><a href="https://www.blindgolf.com.au/" target="_blank" rel="noopener"><img class="logos__logo logos__logo--square" src="images/logos/blind-golf.png" width="360" height="360" alt="Blind Golf Australia" loading="lazy"></a></li>
+        <li><a href="https://www.mymusclechef.com/" target="_blank" rel="noopener"><img class="logos__logo logos__logo--compact" src="images/logos/muscle-chef.svg" width="77" height="39" alt="My Muscle Chef" loading="lazy"></a></li>
+        <li><a href="https://au.motelrocks.com/" target="_blank" rel="noopener"><img class="logos__logo" src="images/logos/motel-rocks.png" width="297" height="94" alt="Motel Rocks" loading="lazy"></a></li>
+        <!-- Spoony's website is down (Cloudflare error), so it isn't linked for now. -->
+        <li><span class="logos__wordmark">Spoony</span></li>
+        <li><a href="https://rotarysurferssunrise.org/" target="_blank" rel="noopener"><img class="logos__logo" src="images/logos/rotary.svg" width="392" height="148" alt="Rotary" loading="lazy"></a></li>
+        <li><a href="https://anchoredcare.com.au/" target="_blank" rel="noopener"><img class="logos__logo logos__logo--wide" src="images/logos/anchored-care.png" width="1172" height="278" alt="Anchored Care" loading="lazy"></a></li>
+        <li><a href="https://www.feroscare.com.au/" target="_blank" rel="noopener"><img class="logos__logo logos__logo--wide" src="images/logos/feros-care.svg" width="433" height="92" alt="Feros Care" loading="lazy"></a></li>
+        <li><a href="https://impactgoldcoast.com.au/" target="_blank" rel="noopener"><img class="logos__logo logos__logo--compact" src="images/logos/impact-gold-coast-youth-summit.png" width="396" height="257" alt="IMPACT Gold Coast Youth Summit" loading="lazy"></a></li>
+        <li><a href="https://www.ylaaus.com/" target="_blank" rel="noopener"><img class="logos__logo logos__logo--wide" src="images/logos/ylaa.png" width="1122" height="258" alt="Youth Leadership Academy Australia" loading="lazy"></a></li>
+      </ul>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact__intro">
+        <h2 class="contact__title" id="contact-title">Get in touch</h2>
+        <p>Planning an event? Enquire for speaker rates, or book a consultation call to talk through your event.</p>
+        <p>Prefer email? <a href="mailto:hello@chanelle.au">hello@chanelle.au</a></p>
+      </div>
+
+      <!-- Sending: set data-endpoint to the HTTPS address of a form service (e.g. a
+           Cloudflare Worker, Formspree or Web3Forms). Until then, main.js opens the
+           visitor's email app with their message filled in. -->
+      <form class="contact__form" id="contact-form" method="post" data-endpoint="" data-email="hello@chanelle.au" novalidate>
+        <p class="contact__note">All fields are required.</p>
+
+        <div class="contact__row">
+          <div class="contact__field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="100" aria-describedby="contact-name-error">
+            <p class="contact__error" id="contact-name-error"></p>
+          </div>
+          <div class="contact__field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required maxlength="254" aria-describedby="contact-email-error">
+            <p class="contact__error" id="contact-email-error"></p>
+          </div>
+        </div>
+
+        <div class="contact__field">
+          <label for="contact-enquiry">What’s it about?</label>
+          <select id="contact-enquiry" name="enquiry">
+            <option>Speaking</option>
+            <option>Event hosting / MC</option>
+            <option>Consultation call</option>
+            <option>Brand partnership</option>
+            <option>Something else</option>
+          </select>
+        </div>
+
+        <div class="contact__field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="6" required minlength="10" maxlength="2000" aria-describedby="contact-message-error contact-message-count"></textarea>
+          <div class="contact__meta">
+            <p class="contact__error" id="contact-message-error"></p>
+            <p class="contact__count" id="contact-message-count">0 / 2000</p>
+          </div>
+        </div>
+
+        <!-- Spam trap: hidden from people, but bots fill it in. -->
+        <div class="contact__trap" aria-hidden="true">
+          <label for="contact-website">Leave this field empty</label>
+          <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="contact__submit" type="submit">Send enquiry</button>
+        <p class="contact__status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__statement">Changing the way you see what’s <em>possible.</em></p>
+
+    <div class="site-footer__columns">
+      <div class="site-footer__contact">
+        <h2 class="site-footer__heading">Work with me</h2>
+        <p>Planning an event? Get in touch for speaker rates, or book a consultation call to talk through your event.</p>
+        <a class="site-footer__email" href="mailto:hello@chanelle.au">hello@chanelle.au</a>
+        <a class="site-footer__cta" href="#contact" data-enquiry="Consultation call">Book a consultation call</a>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="site-footer__heading">Explore</h2>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#what-i-do">What I do</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="site-footer__heading">Services</h2>
+        <ul>
+          <li>Motivational speaking</li>
+          <li>Event hosting / MC</li>
+          <li>She’s Social community</li>
+          <li>Content creation</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="site-footer__heading">Follow</h2>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">She’s Social</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 Chanelle Morris</p>
+      <p>Motivational speaker · Event host · Content creator · Founder, She’s Social</p>
+      <a href="#">Back to top</a>
+    </div>
+  </footer>
 </body>
 </html>
