@@ -257,7 +257,7 @@ function initContactForm() {
   enhanceSelect(contactFields['enquiry']);
 
   // Links like contact.html?enquiry=consultation pre-select the enquiry type.
-  const ENQUIRY_LINKS = { speaking: 'Speaking', hosting: 'Event hosting / MC', consultation: 'Consultation call', brand: 'Brand partnership' };
+  const ENQUIRY_LINKS = { speaking: 'Speaking', hosting: 'MC & event hosting', consultation: 'Consultation call', brand: 'Brand partnership' };
   const fromLink = ENQUIRY_LINKS[new URLSearchParams(location.search).get('enquiry')];
   if (fromLink) {
     contactFields['enquiry'].value = fromLink;
