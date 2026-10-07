@@ -538,8 +538,8 @@ em {
    About
    ========================================================================== */
 
-/* A full screen in yellow, type-led: a giant stat on one side, her story on
-   the other, and her roles running along the bottom. */
+/* A full screen in yellow, type-led: "Low vision" huge on one side, her story
+   on the other, and her roles running along the bottom. */
 .about {
   display: grid;
   grid-template-columns: 1fr 1.1fr 0.75fr;
@@ -566,10 +566,11 @@ em {
   align-self: center;
 }
 
+/* Sized so "VISION" (1.83em wide) fills the column. */
 .about__stat-number {
   margin: 0;
-  font-size: min(34vw, 62svh);
-  line-height: 1;
+  font-size: min(22.4vw, 36svh);
+  line-height: 0.92;
   text-box: trim-both cap alphabetic;
   color: var(--pink);
 }
@@ -644,7 +645,7 @@ em {
   }
 
   .about__stat-number {
-    font-size: 45vw;
+    font-size: 38vw;
   }
 
   .about__roles {
@@ -1909,7 +1910,6 @@ em {
   .site-nav a,
   .menu__link span,
   .hero__name,
-  .about__stat-number,
   .services__item span,
   .service-index__name span,
   .logos__title,
