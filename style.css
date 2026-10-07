@@ -903,6 +903,127 @@ em {
 
 
 /* ==========================================================================
+   Press (Home and Media)
+   ========================================================================== */
+
+/* A full screen: the newspaper article fills it, darkened on the side where
+   the headline sits so the big text stays readable; her photo shows through
+   on the other side. The article's text is blurred in this image (it's
+   texture here); "Read the article" opens the readable page. */
+.press {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  min-height: var(--screen-h);
+  padding: clamp(2rem, 6svh, 5rem) var(--pad);
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--off-white);
+}
+
+.press__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%;   /* her face, not the article's last lines */
+}
+
+.press::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to right,
+    rgb(26 20 22 / 0.93) 0%,
+    rgb(26 20 22 / 0.86) 45%,
+    rgb(26 20 22 / 0.2) 75%,
+    rgb(26 20 22 / 0) 100%);
+}
+
+.press__text {
+  max-width: 55%;
+}
+
+.press__label {
+  margin: 0 0 1.25rem;
+  font-size: var(--nav-size);
+  color: var(--pink);
+}
+
+/* The hero name's stretched capitals. Each line is about 3.8em wide, sized to
+   fill the dark side. */
+.press__title {
+  display: grid;
+  gap: 0.2em;
+  margin: 0 0 0.35em;
+  padding-block: 0.06em;
+  font-size: min(13.5vw, 20svh);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.press__title span {
+  display: block;
+  text-box: trim-both cap alphabetic;
+  white-space: nowrap;
+  transform: scaleY(1.15);
+}
+
+.press__quote {
+  margin: 0 0 clamp(1.5rem, 4svh, 2.5rem);
+  max-width: 30em;
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  line-height: 1.15;
+}
+
+.press__quote p {
+  margin: 0;
+}
+
+.press .button:focus-visible {
+  outline-color: var(--off-white);
+}
+
+.press__credit {
+  margin: 1.25rem 0 0;
+  font-size: 1rem;
+  opacity: 0.75;
+}
+
+/* Phones: her photo fills the screen, and the text sits over a dark fade at
+   the bottom. */
+@media (max-width: 700px) {
+  .press {
+    align-items: end;
+  }
+
+  .press__image {
+    object-position: 82% 0;
+  }
+
+  .press::before {
+    background: linear-gradient(to top,
+      rgb(26 20 22 / 0.95) 0%,
+      rgb(26 20 22 / 0.9) 62%,
+      rgb(26 20 22 / 0.25) 85%,
+      rgb(26 20 22 / 0) 100%);
+  }
+
+  .press__text {
+    max-width: none;
+  }
+
+  .press__title {
+    font-size: calc((100vw - 32px) / 3.85);
+  }
+}
+
+
+/* ==========================================================================
    Logos
    ========================================================================== */
 
@@ -1637,6 +1758,13 @@ em {
   outline-offset: 6px;
 }
 
+/* A featured card (her favourite speech) takes two columns where there's room. */
+@media (min-width: 900px) {
+  .card--featured {
+    grid-column: span 2;
+  }
+}
+
 /* Media is grouped by type; consecutive groups share the spacing. */
 .cards + .cards {
   padding-top: 0;
@@ -1915,7 +2043,8 @@ em {
   .logos__title,
   .logos__wordmark,
   .contact__title,
-  .page-hero__title span {
+  .page-hero__title span,
+  .press__title span {
     line-height: 0.75;
   }
 }

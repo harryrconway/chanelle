@@ -1,4 +1,6 @@
 .DS_Store
 
-# Photo originals; the web versions the site uses live in images/photos/
+# Photo originals and phone screenshots; the web versions the site uses
+# live in images/photos/ and images/press/
 /images/DSC*.jpg
+/images/IMG_*
